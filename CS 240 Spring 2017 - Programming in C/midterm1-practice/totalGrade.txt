@@ -1,0 +1,21 @@
+task1/task14
+task14.c
+task14.o
+task14.out : 20/20
+task2/task22
+task22.c
+task22.out : 25/30
+task3/task29
+task29.c
+task29.out : 20/30
+task4/task35
+task35.c
+task35.o
+task35.out : 50/50
+task5/task33
+task33.c
+task33.o
+task33.out : 50/50
+
+CS240: Exam1. brow1325 Thu Feb 9 11:55:02 EST 2017
+Total Grade: 165/180

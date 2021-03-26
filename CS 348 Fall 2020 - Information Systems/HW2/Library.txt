@@ -1,0 +1,84 @@
+group: Libraries - Book, Author, AuthorBook, Publisher, BookCopies, BookLoans, Member, LibraBranch
+description: Library Relational Database
+category@de:Universität Innsbruck
+category@en:University of Innsbruck
+
+Book = {
+BookId, Title, PublId
+
+1, 'Red Toes', '1'
+2, 'Cry Wolf', '1'
+3, 'Mario Woods', '2'
+4, 'Bookie 2', '4'
+5, 'Electric Ghost', '3'
+}
+
+Author = {
+AuthId, AuthName
+
+1, Bob
+2, Jerry
+3, Debra
+4, Elliot
+5, Jake
+}
+
+AuthorBook = {
+AuthId, BookId
+
+1, 1
+1, 5
+2, 4
+3, 3
+4, 2
+}
+
+Publisher = {
+PublId, PublName, Address, Phone
+
+1, "Dingo Publishing", "1234 Cadbury Lane", 843999221
+2, "NEHE", "682 W End Ave", 1866412674
+3, "BoBo Inc", "Empty WareHouse 42", 2481993400
+4, "Paper Words" , "1 The Moon", 4172185397
+}
+
+BookCopies = {
+BookId, BranId, Copies
+
+1, 1, 5
+1, 2, 1
+2, 1, 4
+2, 3, 0
+3, 2, 1
+4, 3, 2
+5, 1, 0
+5, 2, 1
+5, 3, 2
+}
+
+BookLoans = {
+BookId, BranId, MembId, IssueDate, DueDate
+
+4, 3, 3, "2-14-20", "2-21-20"
+1, 2, 1, "1-04-20", "3-18-20"
+2, 2, 1, "1-12-19", "1-19-20"
+2, 3, 3, "3-24-19", "4-22-20"
+5, 1, 2, "12-24-19", "12-31-19"
+}
+
+Member = {
+MembId, MembName, Address, Phone
+
+1, "Cory", "Incatana Drive", 7185332017
+2, "Jacob", "Purple Rooms", 5046663299
+3, "Linda", "NASA", 9763657743
+4, "Terry", "Clown School", 1234567890
+}
+
+LibraryBranch = {
+BranId, BranName, State
+
+1, "Best Library", "Indiana"
+2, "Okay Library", "Illinois"
+3, "Weird Library For Weird People", "Florida"
+}

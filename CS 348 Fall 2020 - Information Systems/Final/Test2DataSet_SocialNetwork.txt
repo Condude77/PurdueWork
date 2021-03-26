@@ -1,0 +1,31 @@
+Execute the first query then the second query.
+
+Query 1)
+
+CREATE (:Person {name:"Bob"}), (:Person {name:"Sam"}), (:Person {name:"Sally"}),
+(:Person {name:"Alice"}), (:Person {name:"Jim"}), (:Person {name:"Tom"}),
+(:Person {name:"Harry"}),
+(:Post {text:"Beautiful sunrise today."}), (:Post {text:"Yummy rice for dinner!"}),
+(:Post {text:"Go Boilermakers!"})
+
+=============================================================
+
+Query 2)
+
+match (bob:Person {name:"Bob"}), (sam:Person {name:"Sam"}), (sally:Person {name:"Sally"}),
+(alice:Person {name:"Alice"}), (jim:Person {name:"Jim"}), (tom:Person {name:"Tom"}),
+(harry:Person {name:"Harry"}),
+(sunrise:Post {text:"Beautiful sunrise today."}), (rice:Post {text:"Yummy rice for dinner!"}),
+(go:Post {text:"Go Boilermakers!"})
+create (bob)-[:Family]->(sam),
+(bob)-[:Family]->(sally),
+(bob)-[:Friend]->(alice),
+(bob)-[:Friend]->(jim),
+(tom)<-[:Friend]-(alice),
+(tom)<-[:Friend]-(jim),
+(harry)<-[:Friend]-(jim),
+(alice)-[:Posted]->(sunrise),
+(jim)-[:Posted]->(rice),
+(jim)-[:Posted]->(go),
+(bob)-[:Liked]->(go),
+(sally)-[:Liked]->(go)

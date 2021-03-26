@@ -1,0 +1,34 @@
+
+
+mongoimport --db test --collection inventory ^
+          --authenticationDatabase admin --username <user> --password <password> ^
+          --drop --file ~\downloads\inventory.crud.json
+
+
+mongoimport --db db3 --collection countries --drop --file C:\mongoDBDB\countries\countries.json
+
+
+//Question 8) =========================
+db.countries.aggregate([
+    { $match: { "name.common" : "United States"}},
+    { $project: { _id: 0, name: "$name.common", demonym: 1 } },
+    { $lookup:
+        {
+           from: "countries",
+           localField: "demonym",
+           foreignField: "demonym",
+           as: "countriesWithSameDemonym"
+       }
+    },
+    { $unwind: "$countriesWithSameDemonym" },
+    { $project: { _id: 0, name: 1, demonym: 1 , countryWithSameDemonym: "$countriesWithSameDemonym.name.common"} },
+]).pretty()
+
+
+//Question 7 ======================
+db.countries.find({"name.common": "United States"}).forEach( function(myDoc) { 
+    var words = myDoc.name.official.split(" ");
+    for (var idx=0; idx<words.length; idx++) {
+        print( "Word: " +  words[idx] );
+    }    
+} );  

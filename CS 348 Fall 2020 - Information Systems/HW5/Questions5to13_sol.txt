@@ -1,0 +1,268 @@
+For questions 5 to 13, consider the following graph database about publications. 
+The database description can be found in the following url:
+https://neo4j.com/graphgist/interpreting-citation-patterns-in-academic-publications-a-research-aid
+
+- To create the database, execute the cypher queries in the databaseCreateQueries.txt file.
+- Write your answers in HW5_Neo4j.py
+
+Useful hints:
+- To view the full graph in neo4j, you can run the following query:
+match(a:Article)--(b)--(c)--(d)
+return a,b,c,d
+
+- You can use commas to separate multiple patterns in the match clause. 
+For example, if a connects to b, b connects to c, and c connects to a, we can write the following match:
+match (a)--(b)--(c),
+      (c)--(a)
+Look at queries 6 and 7 in the url above for more examples. Quiz 7 also has one example of using commas in the match clause.      
+
+--------------------------------------------------------------------
+
+Question 5) (5 points) 
+For each author, list their name and article titles (do not include chapters or books). 
+
+Sample answer:
+
+MATCH (author:Author)-[:WRITES]->(article:Article)
+RETURN author.name, article.title
+
+╒═════════════════╤══════════════════════════════════════════════════════════╕
+│"author.name"    │"article.title"                                           │
+╞═════════════════╪══════════════════════════════════════════════════════════╡
+│"Gorman, Michael"│"Independence and Substance"                              │
+├─────────────────┼──────────────────────────────────────────────────────────┤
+│"Toner, Patrick" │"Independence Accounts of Substance and Substantial Parts"│
+├─────────────────┼──────────────────────────────────────────────────────────┤
+│"Gorman, Michael"│"On Substantial Independence: a Reply to Patrick Toner"   │
+├─────────────────┼──────────────────────────────────────────────────────────┤
+│"Gorman, Michael"│"Substance and Identity-Dependence"                       │
+├─────────────────┼──────────────────────────────────────────────────────────┤
+│"Fine, Kit"      │"Ontological Dependence"                                  │
+├─────────────────┼──────────────────────────────────────────────────────────┤
+│"Roger, Cat"     │"Yet Another Title"                                       │
+├─────────────────┼──────────────────────────────────────────────────────────┤
+│"Beth, Dog"      │"Seventh Title"                                           │
+└─────────────────┴──────────────────────────────────────────────────────────┘
+
+Question 6) (5 points) 
+For each author, list their name and publication titles (include only articles and chapters). 
+List the type of publication as well (you may use the function labels to return the label(s) for a certain node).
+
+Sample answer:
+
+//Assuming only the WRITES relationship connects authors to only papers and chapters (no books) 
+match (author:Author)-[:WRITES]->(paper_or_chapter) 
+return author.name, paper_or_chapter.title, labels(paper_or_chapter)
+
+//Another solution (without the assumption above)
+MATCH (author:Author)-[:WRITES]->(paper_or_chapter)
+WITH author, paper_or_chapter, labels(paper_or_chapter) as publicationType 
+WHERE publicationType=["Article"] or publicationType=["Chapter"] 
+RETURN author.name, paper_or_chapter.title, publicationType
+
+╒═══════════════════╤══════════════════════════════════════════════════════════╤══════════════════════════╕
+│"author.name"      │"paper_or_chapter.title"                                  │"labels(paper_or_chapter)"│
+╞═══════════════════╪══════════════════════════════════════════════════════════╪══════════════════════════╡
+│"Gorman, Michael"  │"Substance and Identity-Dependence"                       │["Article"]               │
+├───────────────────┼──────────────────────────────────────────────────────────┼──────────────────────────┤
+│"Gorman, Michael"  │"On Substantial Independence: a Reply to Patrick Toner"   │["Article"]               │
+├───────────────────┼──────────────────────────────────────────────────────────┼──────────────────────────┤
+│"Gorman, Michael"  │"Independence and Substance"                              │["Article"]               │
+├───────────────────┼──────────────────────────────────────────────────────────┼──────────────────────────┤
+│"Toner, Patrick"   │"Independence Accounts of Substance and Substantial Parts"│["Article"]               │
+├───────────────────┼──────────────────────────────────────────────────────────┼──────────────────────────┤
+│"Koslicki, Kathrin"│"Substance, Independence, and Unity"                      │["Chapter"]               │
+├───────────────────┼──────────────────────────────────────────────────────────┼──────────────────────────┤
+│"Fine, Kit"        │"Ontological Dependence"                                  │["Article"]               │
+├───────────────────┼──────────────────────────────────────────────────────────┼──────────────────────────┤
+│"Roger, Cat"       │"Yet Another Title"                                       │["Article"]               │
+├───────────────────┼──────────────────────────────────────────────────────────┼──────────────────────────┤
+│"Beth, Dog"        │"Seventh Title"                                           │["Article"]               │
+├───────────────────┼──────────────────────────────────────────────────────────┼──────────────────────────┤
+│"Beth, Dog"        │"Chapter on Making Chapters"                              │["Chapter"]               │
+└───────────────────┴──────────────────────────────────────────────────────────┴──────────────────────────┘
+
+Question 7) (5 points) 
+For each author, list their name and publication titles (include only articles, chapters, and books). 
+List the type of publication as well (you may use the function labels to return the label(s) for a certain node).
+
+Sample answer1:
+
+match (author:Author)-[:WRITES|EDITS]->(publication) 
+return author.name, publication.title, labels(publication)
+
+Sample answer2:
+
+MATCH (author:Author)-[]->(publication)
+WHERE publication:Article or publication:Chapter or publication:Book
+RETURN author.name, publication.title, labels(publication)
+╒═══════════════════╤══════════════════════════════════════════════════════════╤═════════════════════╕
+│"author.name"      │"publication.title"                                       │"labels(publication)"│
+╞═══════════════════╪══════════════════════════════════════════════════════════╪═════════════════════╡
+│"Gorman, Michael"  │"Substance and Identity-Dependence"                       │["Article"]          │
+├───────────────────┼──────────────────────────────────────────────────────────┼─────────────────────┤
+│"Gorman, Michael"  │"On Substantial Independence: a Reply to Patrick Toner"   │["Article"]          │
+├───────────────────┼──────────────────────────────────────────────────────────┼─────────────────────┤
+│"Gorman, Michael"  │"Independence and Substance"                              │["Article"]          │
+├───────────────────┼──────────────────────────────────────────────────────────┼─────────────────────┤
+│"Toner, Patrick"   │"Independence Accounts of Substance and Substantial Parts"│["Article"]          │
+├───────────────────┼──────────────────────────────────────────────────────────┼─────────────────────┤
+│"Koslicki, Kathrin"│"Substance, Independence, and Unity"                      │["Chapter"]          │
+├───────────────────┼──────────────────────────────────────────────────────────┼─────────────────────┤
+│"Fine, Kit"        │"Ontological Dependence"                                  │["Article"]          │
+├───────────────────┼──────────────────────────────────────────────────────────┼─────────────────────┤
+│"Roger, Cat"       │"Yet Another Title"                                       │["Article"]          │
+├───────────────────┼──────────────────────────────────────────────────────────┼─────────────────────┤
+│"Beth, Dog"        │"Seventh Title"                                           │["Article"]          │
+├───────────────────┼──────────────────────────────────────────────────────────┼─────────────────────┤
+│"Beth, Dog"        │"Chapter on Making Chapters"                              │["Chapter"]          │
+├───────────────────┼──────────────────────────────────────────────────────────┼─────────────────────┤
+│"Feser, Edward"    │"Aristotle on Method and Metaphysics"                     │["Book"]             │
+├───────────────────┼──────────────────────────────────────────────────────────┼─────────────────────┤
+│"Tim, Bob"         │"Book Name is Two"                                        │["Book"]             │
+└───────────────────┴──────────────────────────────────────────────────────────┴─────────────────────┘
+
+Question 8) (5 points) 
+List names of authors and the number of publications (articles, chapters, and books) each has.
+
+Sample answer1:
+match (author:Author)-[:WRITES|EDITS]->(publication) 
+return author.name, count(publication) as publication_count
+
+Sample answer2:
+MATCH (author:Author)-[]->(publication)
+WHERE publication:Article OR publication:Chapter or publication:Book
+RETURN author.name, count(publication) as publication_count
+
+╒═══════════════════╤═══════════════════╕
+│"author.name"      │"publication_count"│
+╞═══════════════════╪═══════════════════╡
+│"Gorman, Michael"  │3                  │
+├───────────────────┼───────────────────┤
+│"Toner, Patrick"   │1                  │
+├───────────────────┼───────────────────┤
+│"Koslicki, Kathrin"│1                  │
+├───────────────────┼───────────────────┤
+│"Fine, Kit"        │1                  │
+├───────────────────┼───────────────────┤
+│"Roger, Cat"       │1                  │
+├───────────────────┼───────────────────┤
+│"Beth, Dog"        │2                  │
+├───────────────────┼───────────────────┤
+│"Feser, Edward"    │1                  │
+├───────────────────┼───────────────────┤
+│"Tim, Bob"         │1                  │
+└───────────────────┴───────────────────┘
+
+Question 9) (5 points) 
+List titles and number of pages for articles that has 10 pages or less.
+Note: the pp property is a list. You can access list elements using brackets (e.g., pp[0])
+
+Sample answer:
+match(a:Article)-[in:IN]->(:Issue)
+where (in.pp[1] - in.pp[0]) <= 10
+return a.title, (in.pp[1] - in.pp[0] + 1) as numberOfPages
+
+
+MATCH (a:Article)-[e:IN]->(:Issue)
+WITH a, e.pp[1]-e.pp[0]+1 as NumberOfPages
+WHERE NumberOfPages <=10
+RETURN a.title, NumberOfPages
+
+╒══════════════════════════════════════════════════════════╤═══════════════╕
+│"a.title"                                                 │"numberOfPages"│
+╞══════════════════════════════════════════════════════════╪═══════════════╡
+│"Independence Accounts of Substance and Substantial Parts"│7              │
+├──────────────────────────────────────────────────────────┼───────────────┤
+│"Seventh Title"                                           │6              │
+└──────────────────────────────────────────────────────────┴───────────────┘
+
+Question 10) (8 points) 
+List the name of any author who has a pair of articles with one of them citing the other. 
+Include the titles of the two articles.
+
+Sample answer:
+
+MATCH (p2:Article)<-[]-(a1:Author)-[]->(p1:Article),(p1)-[:CITES]->(p2)
+RETURN a1.name, p1.title, p2.title
+
+╒═════════════════╤═══════════════════════════════════════════════════════╤═══════════════════════════════════╕
+│"a1.name"        │"p1.title"                                             │"p2.title"                         │
+╞═════════════════╪═══════════════════════════════════════════════════════╪═══════════════════════════════════╡
+│"Gorman, Michael"│"On Substantial Independence: a Reply to Patrick Toner"│"Substance and Identity-Dependence"│
+└─────────────────┴───────────────────────────────────────────────────────┴───────────────────────────────────┘
+
+Question 11) (7 points) 
+For each publication (article or chapter), list the number of (incoming) citations the publication has. 
+Keep only publications with 2 citations or more.
+
+Sample answer:
+
+MATCH (publication)<-[:CITES]-()
+WITH publication, count(*) as publication_count
+WHERE (publication:Article or publication:Chapter) and publication_count >= 2
+RETURN publication.title, publication_count
+
+╒══════════════════════════════════════════════════════════╤═══════════════════╕
+│"publication.title"                                       │"publication_count"│
+╞══════════════════════════════════════════════════════════╪═══════════════════╡
+│"Independence and Substance"                              │3                  │
+├──────────────────────────────────────────────────────────┼───────────────────┤
+│"Substance and Identity-Dependence"                       │2                  │
+├──────────────────────────────────────────────────────────┼───────────────────┤
+│"Independence Accounts of Substance and Substantial Parts"│2                  │
+├──────────────────────────────────────────────────────────┼───────────────────┤
+│"Yet Another Title"                                       │2                  │
+├──────────────────────────────────────────────────────────┼───────────────────┤
+│"On Substantial Independence: a Reply to Patrick Toner"   │3                  │
+└──────────────────────────────────────────────────────────┴───────────────────┘
+
+Question 12) (10 points) 
+List article title, journal title where the article is published, and author name(s) for articles 
+cited twice or more.
+
+Sample answer 1:
+match (journal:Journal)<-[:OF]-(issue:Issue)<-[:IN]-(article:Article)<-[:CITES]-(someOtherPublication)
+with journal, article, count(someOtherPublication) as citations_count
+where citations_count > 1
+match (article)<-[:WRITES]-(author:Author)
+return journal.title, article.title, citations_count, author.name
+
+Sample answer 2:
+MATCH (author:Author)-[:WRITES]->(article:Article)-[:IN]->()-[]->(journal:Journal), ()-[e:CITES]->(article:Article)
+WITH journal, article, author, count(e) as citation_count
+WHERE citation_count >= 2
+RETURN journal.title, article.title, citation_count, author.name
+
+╒═══════════════════════════════════════╤══════════════════════════════════════════════════════════╤═════════════════╤═════════════════╕
+│"journal.title"                        │"article.title"                                           │"citations_count"│"author.name"    │
+╞═══════════════════════════════════════╪══════════════════════════════════════════════════════════╪═════════════════╪═════════════════╡
+│"International Philosophical Quarterly"│"Independence and Substance"                              │3                │"Gorman, Michael"│
+├───────────────────────────────────────┼──────────────────────────────────────────────────────────┼─────────────────┼─────────────────┤
+│"Philosophical Studies"                │"Independence Accounts of Substance and Substantial Parts"│2                │"Toner, Patrick" │
+├───────────────────────────────────────┼──────────────────────────────────────────────────────────┼─────────────────┼─────────────────┤
+│"Philosophical Studies"                │"On Substantial Independence: a Reply to Patrick Toner"   │3                │"Gorman, Michael"│
+├───────────────────────────────────────┼──────────────────────────────────────────────────────────┼─────────────────┼─────────────────┤
+│"Philosophical Papers"                 │"Substance and Identity-Dependence"                       │2                │"Gorman, Michael"│
+├───────────────────────────────────────┼──────────────────────────────────────────────────────────┼─────────────────┼─────────────────┤
+│"History in the making"                │"Yet Another Title"                                       │2                │"Roger, Cat"     │
+└───────────────────────────────────────┴──────────────────────────────────────────────────────────┴─────────────────┴─────────────────┘
+
+Question 13) (10 points) 
+In addition to using them in the match clause, patterns can also be used in the Where clause. 
+For examples, look at queries 6 and 7 in the url above. 
+Use pattern(s) in the where clause to find a pair of articles published in different issues 
+for the same journal where one of the articles cites the other
+Include the title and issue number for both articles.
+
+Sample answer:
+
+MATCH (a1:Article)-[:IN]->(i1:Issue)-[]->(:Journal)<-[]-(i2:Issue)<-[]-(a2:Article)
+WHERE (a1)-[:CITES]->(a2)
+RETURN a1.title, i1.issue, a2.title, i2.issue
+
+╒═══════════════════════════════════════════════════════╤══════════╤══════════════════════════════════════════════════════════╤══════════╕
+│"a1.title"                                             │"i1.issue"│"a2.title"                                                │"i2.issue"│
+╞═══════════════════════════════════════════════════════╪══════════╪══════════════════════════════════════════════════════════╪══════════╡
+│"On Substantial Independence: a Reply to Patrick Toner"│2         │"Independence Accounts of Substance and Substantial Parts"│1         │
+└───────────────────────────────────────────────────────┴──────────┴──────────────────────────────────────────────────────────┴──────────┘

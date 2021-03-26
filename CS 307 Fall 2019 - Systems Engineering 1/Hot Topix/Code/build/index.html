@@ -1,0 +1,143 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <link rel="icon" href="/favicon.ico" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <meta name="theme-color" content="#000000" />
+    <meta name="description" content="Web site created using create-react-app" />
+    <link rel="apple-touch-icon" href="logo192.png" />
+    <link rel="manifest" href="/manifest.json" />
+    <title>Timeline</title>
+    <link rel="stylesheet" href="vendor/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="vendor/fontawesome-free/css/all.min.css">
+    <link rel="stylesheet" href="vendor/simple-line-icons/css/simple-line-icons.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Catamaran:100,200,300,400,500,600,700,800,900">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Muli">
+        <link rel="stylesheet" href="css/new-age.css">
+        <link rel="stylesheet" href="device-mockups/device-mockups.min.css">
+        <link rel="stylesheet" href="/static/css/2.09048cf8.chunk.css">
+        <link rel="stylesheet" href="/static/css/main.0e430bf3.chunk.css">
+</head>
+
+<body style="background-color:<%= user.backgroundColor1 %>; max-width:96vw; margin:auto;">
+    <nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
+        <div class="container"><a class="navbar-brand js-scroll-trigger" href="#root">Hot TopiX</a>
+            <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">Menu <i class="fas fa-bars"></i></button>
+            <div class="collapse navbar-collapse" id="navbarResponsive">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item"><a class="nav-link js-scroll-trigger" href="/home">Your Stream</a></li>
+                    <li class="nav-item"><a class="nav-link js-scroll-trigger" href="/follow_user">Follow/Unfollow User</a></li>
+                    <li class="nav-item"><a class="nav-link js-scroll-trigger" href="/follow_topic">Follow/Unfollow Topic</a></li>
+                    <li class="nav-item"><a class="nav-link js-scroll-trigger" href="/edit_profile">Edit Profile</a></li>
+                    <li class="nav-item"><a class="nav-link js-scroll-trigger" href="/logout">Logout</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <noscript>You need to enable JavaScript to run this app.</noscript>
+    <br>
+    <br>
+    <br>
+
+    <div align="right" style="padding: 6px;">
+      <select aria-label="Color Select">
+        <option>
+          Choose Topic
+        </option>
+        
+        <% for (var i=0; i < topics.length; i++) { %>
+          <option>
+            <%= topics[i] %>
+          </option>
+        <% } %>
+      </select>
+    </div>
+
+    <div id="root"></div>
+    <script src="vendor/jquery/jquery.min.js"></script>
+    <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
+    <script src="js/new-age.min.js"></script>
+    <script>
+        ! function(f) {
+            function e(e) {
+                for (var t, r, n = e[0], o = e[1], u = e[2], l = 0, i = []; l < n.length; l++) r = n[l], Object.prototype.hasOwnProperty.call(c, r) && c[r] && i.push(c[r][0]), c[r] = 0;
+                for (t in o) Object.prototype.hasOwnProperty.call(o, t) && (f[t] = o[t]);
+                for (s && s(e); i.length;) i.shift()();
+                return p.push.apply(p, u || []), a()
+            }
+
+            function a() {
+                for (var e, t = 0; t < p.length; t++) {
+                    for (var r = p[t], n = !0, o = 1; o < r.length; o++) {
+                        var u = r[o];
+                        0 !== c[u] && (n = !1)
+                    }
+                    n && (p.splice(t--, 1), e = l(l.s = r[0]))
+                }
+                return e
+            }
+            var r = {},
+                c = {
+                    1: 0
+                },
+                p = [];
+
+            function l(e) {
+                if (r[e]) return r[e].exports;
+                var t = r[e] = {
+                    i: e,
+                    l: !1,
+                    exports: {}
+                };
+                return f[e].call(t.exports, t, t.exports, l), t.l = !0, t.exports
+            }
+            l.m = f, l.c = r, l.d = function(e, t, r) {
+                l.o(e, t) || Object.defineProperty(e, t, {
+                    enumerable: !0,
+                    get: r
+                })
+            }, l.r = function(e) {
+                "undefined" != typeof Symbol && Symbol.toStringTag && Object.defineProperty(e, Symbol.toStringTag, {
+                    value: "Module"
+                }), Object.defineProperty(e, "__esModule", {
+                    value: !0
+                })
+            }, l.t = function(t, e) {
+                if (1 & e && (t = l(t)), 8 & e) return t;
+                if (4 & e && "object" == typeof t && t && t.__esModule) return t;
+                var r = Object.create(null);
+                if (l.r(r), Object.defineProperty(r, "default", {
+                        enumerable: !0,
+                        value: t
+                    }), 2 & e && "string" != typeof t)
+                    for (var n in t) l.d(r, n, function(e) {
+                        return t[e]
+                    }.bind(null, n));
+                return r
+            }, l.n = function(e) {
+                var t = e && e.__esModule ? function() {
+                    return e.default
+                } : function() {
+                    return e
+                };
+                return l.d(t, "a", t), t
+            }, l.o = function(e, t) {
+                return Object.prototype.hasOwnProperty.call(e, t)
+            }, l.p = "/";
+            var t = this.webpackJsonpclient = this.webpackJsonpclient || [],
+            n = t.push.bind(t);
+            t.push = e, t = t.slice();
+            for (var o = 0; o < t.length; o++) e(t[o]);
+            var s = n;
+            a()
+        }([])
+    </script>
+    <script src="/static/js/2.bcfe4f39.chunk.js"></script>
+    <script src="/static/js/main.24373868.chunk.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,298 @@
+% This is the exam template for CS348.
+% Only edit between \begin{questions} and \end{questions} tags.
+% You can use \begin{lstlisting} and \end{lstlisting} tags for codes. Please use 4 white-spaces per indentation.
+% You can use \lstinline{} tag for inline codes. 
+% Please use consistent wording, like, "What is the output of the following SQL statements?" See previous exams.
+% \CorrectChoice is for the right answer, \choice is for the other answers.
+% Please make sure a query, a procedure, etc. compiles correctly and make sure the answer is what you expect
+
+
+\documentclass[12pt]{exam}
+\usepackage[utf8]{inputenc}
+
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amssymb}
+\usepackage{multicol}
+\usepackage{listings}
+\usepackage{enumerate}
+\usepackage{blindtext}
+\usepackage{scrextend}
+\usepackage{graphicx}
+\usepackage{comment}
+
+\def\ojoin{\setbox0=\hbox{$\bowtie$}%
+  \rule[-.02ex]{.25em}{.4pt}\llap{\rule[\ht0]{.25em}{.4pt}}}
+\def\leftouterjoin{\mathbin{\ojoin\mkern-5.8mu\bowtie}}
+\def\rightouterjoin{\mathbin{\bowtie\mkern-5.8mu\ojoin}}
+\def\fullouterjoin{\mathbin{\ojoin\mkern-5.8mu\bowtie\mkern-5.8mu\ojoin}}
+
+\lstset{
+	language = Python,
+	breaklines=true,
+	showstringspaces=false,
+	tabsize=3
+}
+
+\renewcommand{\choiceshook}{%
+    \setlength{\leftmargin}{15pt}%
+}
+\title{CS 348 - Homework 2 }
+\author{Relational Algebra \\(160 Points)}
+\date{Fall 2020}
+
+
+
+\begin{document}
+
+\maketitle
+\begin{description}
+	\item[Due on: 10/02/2020 ]
+\end{description}
+\noindent
+This assignment is to be completed by individuals. You should only talk to the instructor, and the TA about this assignment. You may also post questions (and not answers) to Campuswire. \\
+
+There will be a 10\% penalty if the homework is submitted 24 hours after the due date, a 15\% penalty if the homework is submitted 48 hours after the due date, or a 20\% penalty if the homework is submitted 72 hours after the due date. The homework will not be accepted after 72 hours, as a solution will be posted by then.\\
+
+For questions 1-3, write your answers on the hw2.tex template file (provided with this homework document) and generate a pdf file. Upload the pdf file to \textbf{Gradescope}. For questions 4-5, create a sql file named \textbf{q45.sql} and write the trigger and procedure there. Upload your \textbf{q45.sql} file to \textbf{Brightspace}.\\
+
+\begin{questions}
+
+\question (70 points) Given below is a relational schema about libraries. Write relational algebra queries for the following questions.\\
+
+\begin{addmargin}[1em]{2em}% 1em left, 2em right
+
+    \textit{Book} (\textbf{\underline{BookId}},  \textit{Title}, \textit{PublId})\\
+    \textit{Author} (\textbf{\underline{AuthId}}, \textit{AuthName})\\
+    \textit{AuthorBook} (\textbf{\underline{AuthId}}, \textbf{\underline{BookId}})\\
+    \textit{Publisher} (\textbf{\underline{PublId}}, \textit{PublName}, \textit{Address}, \textit{Phone})\\
+    \textit{BookCopies} (\textbf{\underline{BookId}, \underline{BranId}}, \textit{Copies})\\
+    \textit{BookLoans} (\textbf{\underline{BookId}, \underline{BranId}, \underline{MembId}}, \textit{IssueDate}, \textit{DueDate})\\
+    \textit{Member} (\textbf{\underline{MembId}},  \textit{MembName}, \textit{Address}, \textit{Phone})\\
+    \textit{LibraryBranch} (\textbf{\underline{BranId}}, \textit{BranName}, \textit{State})\\
+    
+\end{addmargin}
+
+\begin{choices}
+
+%............................. question 1: Basic RA............... %	
+	\choice(5 points) List the names of all branches in Indiana.\\
+    \textbf{Answer:} \\
+    %.........  Write your answer   ..... %	
+	$\Pi_{BranName}(\sigma_{State = "Indiana"} (LibraryBranch))$
+	\vspace{50 mm}
+	
+%........................... question 2: Joins (inner join) ............... %
+	\choice(10 points) List book titles for all the books in Indiana branches. Use \textbf{theta join} to write this query. 
+	
+	\textbf{Answer}:\\
+    %.........  Write your answer   ..... %	
+	$\Pi_{Title} (\sigma_{State = "Indiana"} ((Book)\bowtie_{Book.BookId = BookCopies.BookId}(BookCopies)\newline \bowtie_{BookCopies.BranId = LibraryBranch.BranId} (LibraryBranch)))$
+	\vspace{50 mm}
+	
+%..................... question 3: Joins (natural join)  ............... %
+	\choice(10 points) List the names of members who \textbf{have not} checked out any books. \\
+	\textbf{Answer}:\\
+    %.........  Write your answer   ..... %	
+	$\Pi_{MembName} Member - (\rho_{CheckedOut} (\Pi_MembName(Member \bowtie_{Member.MembId = BookLoans.MembId} BookLoans)))$
+	\vspace{50 mm}
+    
+%.................... question 4:Outer join (left, right, or full)  ............... %
+	\choice(15 points) For each author, list their name along with the book title, branch id and  number of copies for all of their book copies. Include authors who do not have books.  
+	
+    \textbf{Answer}:\\
+    %.........  Write your answer   ..... %	
+	$\Pi_{AuthName, Title, BookCopies.BranId, Copies} (((Author \leftouterjoin AuthorBook) \leftouterjoin Book ) \leftouterjoin BookCopies )$
+	\vspace{50 mm}
+	
+	%.............. question 5: multi relation with no joins....................
+	
+	\choice(10 points) Retrieve the \textit{bookid} of books that are borrowed at every branch. \\
+    \textbf{Answer}:\\
+    %.........  Write your answer   ..... %	
+	$\Pi_{BookLoans.BookId} (BookLoans \bowtie_{BookLoans.BookId = BookCopies.BookId \wedge BookLoans.BranId = BookCopies.BranId} BookCopies)$
+	\vspace{50 mm}
+    
+   
+    %.............. question 6: multi relation with no joins....................
+	
+	\choice(10 points) List the \textit{bookid} of each book that has not been borrowed while the book has at least one copy. \\
+    \textbf{Answer}:\\
+    %.........  Write your answer   ..... %	
+	$\Pi_{BookLoans.BookId} (\sigma_{BookCopies.Copies > 0} (BookLoans \bowtie_{BookLoans.BookId = BookCopies.BookId} BookCopies))$
+	\vspace{50 mm}
+    
+    %.............. question 7: set operations ..................................
+	
+	\choice(10 points) List the \textit{title} of books not written by Bob and borrowed in two branches with one of them being in Illinois and the other in Indiana. \\
+    \textbf{Answer}:\\
+    %.........  Write your answer   ..... %	
+	$\Pi_{Title} (\sigma_{Author.AuthName \neq "Bob" \wedge L1.State = "Indiana" \wedge L2.State = "Illinois"} \newline(((((Book \bowtie_{Book.BookId = AuthorBook.BookId} AuthorBook)\newline \bowtie_{AuthorBook.AuthId = Author.AuthId} Author)\newline \bowtie_{BookLoans.BookId = Book.BookId} BookLoans)\newline \bowtie_{L1.BranId = BookLoans.BranId} \rho_{L1} LibraryBranch)\newline \bowtie_{L2.BranId = BookLoans.BranId} \rho_{L2} LibraryBranch))$
+	\vspace{50 mm}
+	
+\end{choices}
+
+
+
+%.............. question 8: Equivalence between two RAs  ............... %
+\question (10 points) Consider two simple relations $R_1(A, B)$ and $R_2(B, C)$. Which of the following relational algebra expressions is not equivalent to the other three? Provide a counterexample to show that your selected choice is not equivalent to one of the other three choices. The counterexample should include a data instance where the two compared relational algebra expressions return different results (to prove the inequivalence). 
+\begin{choices}
+    \choice $\pi_{A, B}(R_1\bowtie R_2)$
+    \choice $R_1 \bowtie(\pi_{B}(R_2))$
+    \choice $R_1\cap (\pi_{A}(R_1)\times \pi_{B}(R_2))$
+    \choice $\pi_{A, R_2.B}(R_1 \times R_2)$
+\end{choices}
+\textbf{Answer:} \\
+    %.........  Write your answer   ..... %\
+	\text{Expression D is not equivalent to the other expressions.}
+	\newline 
+	\text{This can be seen when given a data set R1(A,B) = [(1,a),(2,b),(3,c)],}
+	\newline
+	\text{R2(B,C) = [(a,C1),(b,C2),(c,C3)].}
+	\text{Expressions A,B,C produce the table}
+	\newline
+	1 & a \newline
+	2 & b \newline
+	3 & c \newline
+	\text{Expression D Produces the table}
+	\newline
+	1 & a \newline
+	1 & b \newline
+	1 & c \newline
+	2 & a \newline
+	2 & b \newline
+	2 & c \newline
+	3 & a \newline
+	3 & b \newline
+	3 & c \newline
+	\vspace{10 mm}
+	
+\question (30 points) Consider the following schema of car dealerships. For each of the following queries, write one equivalent relational algebra expression. \\
+
+\begin{addmargin}[1em]{2em}% 1em left, 2em right
+
+    \textit{Dealers}(\textbf{\underline{did: int}},  \textit{dname: string}, \textit{dcity: string})\\\
+    \textit{Cars}(\textbf{\underline{cid: int}}, \textit{cname: string}, \textit{cmake: string}, \textit{ctype: string})\\\
+    \textit{Selling}(\textbf{\underline{did: int}}, \textbf{\underline{cid: int}}, \textit{sprice: int})\\\
+    
+\end{addmargin}
+
+\begin{choices}
+%.............. question 9: Equivalence between two RAs  ............. %
+    
+    \choice (10 points) $\pi_{dname}(\sigma_{cmake='Nissan'\wedge sprice <= 20000}(Dealers\bowtie Cars\bowtie Selling))$ \\
+    \textbf{Answer:} \\
+    %.........  Write your answer   ..... %	
+	$\pi_{dname} (\sigma_{cmake = "Nissan" \wedge sprice <=20000}(Dealers \bowtie_{Dealers.did=Selling.did}Selling \bowtie_{Selling.cid=Cars.cid} Cars))$
+	\vspace{50 mm}
+    
+%........ question 10: Equivalence between a RA and a SQL  .......... %
+
+    \choice (10 points)
+    \begin{lstlisting}[language=SQL]
+    SELECT dname FROM Dealers d, Cars c, Selling s
+    WHERE c.cmake = 'Jeep' AND s.sprice > 15000 
+    AND d.did = s.did AND c.cid = s.cid;
+    \end{lstlisting}
+    \textbf{Answer:} \\
+    %.........  Write your answer   ..... %	
+	$\pi_{dname} (\sigma_{c.cmake = "Jeep" \wedge s.sprice>15000 \wedge d.did=s.did \wedge c.cid=s.cid}((\rho_{d} Dealers \times \rho_{c} Cars) \times \rho_{s} Selling))$
+	\vspace{50 mm}
+    
+%........ question 11: Equivalence between a RA and a SQL  .......... %
+
+    \choice (10 points)
+    \begin{lstlisting}[language=SQL]
+    SELECT dname FROM Dealers d, Selling s1, Cars c
+    WHERE s1.cid = c.cid AND d.did = s1.did 
+    AND c.cmake = 'Ford' AND NOT EXISTS 
+    (SELECT did FROM Selling s2, Cars c2
+    WHERE s2.cid = c2.cid AND c2.cmake = 'Jeep' 
+    AND s2.did = s1.did);
+    \end{lstlisting}
+    \textbf{Answer:} \\
+    %.........  Write your answer   ..... %	
+	$\pi_{d1.dname} ((\pi_{d1.did, d1.dname} (\sigma_{s1.cid=c1.cid \wedge d1.did=s1.did \wedge c1.cmake="Ford"}((\rho_{d1} Dealers \times \rho_{s1} Selling) \times \rho_{c1} Cars))) - (\pi_{s2.did,d2.dname} (\sigma_{s2.cid=c2.cid \wedge c2.cmake="Jeep"}(\rho_{d2} Dealers \times \rho_{s2} Selling \times \rho_{c2} Cars))))$
+	\vspace{50 mm}
+    
+\end{choices}
+
+
+%........ question 12: Triggers  .......... %
+\question (20 points) Consider the following schema of a student scholarships database.\\
+\begin{addmargin}[1em]{2em}% 1em left, 2em right
+
+    \textit{Students}(\textbf{\underline{sid: int}},  \textit{sname: string}, \textit{birthdate: datetime})\\\
+    \textit{Courses}(\textbf{\underline{cid: int}},  \textit{cname: string}, \textit{description: string})\\\
+    \textit{Grades}(\textbf{\underline{sid: int}}, \textbf{\underline{cid: int}}, \textit{grade: int})\\\
+    \textit{Scholarship}(\textbf{\underline{sid: int}}, \textit{updateYear: int})\\\
+    
+\end{addmargin}
+Suppose students need to maintain an average grade of at least 90 (on a 0-100 scale) to be considered for a scholarship. Write a trigger that does the following: \\
+\begin{enumerate}
+    \item Check the student's new avg grade once a new grading entry is inserted into the Grades table.
+    \item If the student becomes eligible, add the student into the Scholarship table with updateYear = 2020. 
+    \item If the student lost eligibility, remove the student from the Scholarship table. 
+\end{enumerate}
+
+
+%........ question 13: Stored Procedures  .......... % 
+\question (30 points) Consider the following schema:
+\begin{addmargin}[1em]{2em}% 1em left, 2em right
+    \textit{Organization} (\textbf{\underline{OrgId}},  \textit{OrgName}, \textit{HeadId})\\
+    \textit{SubOrg} (\textbf{\underline{OrgId}}, \textbf{\underline{SubOrgId)}}\\
+    \textit{Employee} (\textbf{\underline{EmpId}}, \textit{Name}, \textit{Job}, \textit{Salary}, \textit{OrgId})
+\end{addmargin}
+
+Write a stored procedure to compute the total salaries for a specific college and its departments. Given a specific college (e.g., College of Science), the stored procedure should generate an XML report (see format and example below) that shows the hierarchical structure of the college, the head of the college and each department, the total salaries for each unit, and the names and salaries for all of the employees in each department. At the college level, the total salaries include the college head and all department employees. No recursion is required for this procedure. The report will always contain the college, department, and employee levels. The report will have the following XML format, which can be stored and returned in a text variable:
+
+\begin{verbatim}
+<college>
+        <info>college_name, head_name, total_salaries</info>
+        <Departments>
+                <Department>
+                        <info>dept_name, head_name, total_salaries</info>
+                        <Employees>
+                                <Employee>employee_name, salary</Employee>
+                                ...
+                        </Employees>
+                </Department>
+                ...
+        </Departments>
+</college>
+\end{verbatim}
+
+An example report for ``College of Science" would look like the following (the example is based on the data included in \textbf{tables.sql} and \textbf{data.sql} provided with this homework):
+
+\begin{verbatim}
+<college>
+   <info>College of Science, Smith, 850000</info>
+   <Departments>
+       <Department>
+           <info>Dept of Computer Science, Fei, 330000</info>
+           <Employees>
+               <Employee>Fei, 130000</Employee>
+               <Employee>Mary, 75000</Employee>
+               <Employee>Michael, 125000</Employee>
+           </Employees>
+       </Department>
+       <Department>
+           <info>Dept of Statistics, Bob, 370000</info>
+           <Employees>
+               <Employee>Bob, 130000</Employee>
+               <Employee>Suresh, 120000</Employee>
+               <Employee>Ali, 120000</Employee>
+           </Employees>
+       </Department>
+   </Departments>
+</college>
+\end{verbatim}
+
+\end{questions}
+\bigskip 
+\noindent
+
+%\textbf{Submission instructions:} \\
+%Please use hw2.tex file as a template. Make a pdf file, name it as  \textbf{hw2.pdf} and upload the file to \textbf{Gradescope}. Upload your \textbf{q45.sql} file to \textbf{Brightspace}. \\
+
+
+\end{document}

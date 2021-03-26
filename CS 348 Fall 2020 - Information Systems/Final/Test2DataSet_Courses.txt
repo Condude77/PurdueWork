@@ -1,0 +1,21 @@
+Execute the first query then the second.
+======================================================================
+CREATE (:Course {name:"Info. Systems"}), (:Course {name:"Web Search"}), (:Course {name:"Machine Learning"}),
+(:Course {name:"Cloud DBs"}), (:Course {name:"AI"}), (:Course {name:"Stats"}),
+(:Course {name:"Networks"}), (:Topic {name:"Data Mining"}), (:Topic {name:"HIVE"})
+
+=======================================================================
+match (InfoSys:Course {name:"Info. Systems"}), (Web:Course {name:"Web Search"}), (ML:Course {name:"Machine Learning"}),
+(Cloud:Course {name:"Cloud DBs"}), (AI:Course {name:"AI"}), (Stats:Course {name:"Stats"}),
+(Net:Course {name:"Networks"}), (DM:Topic {name:"Data Mining"}), (HIVE:Topic {name:"HIVE"})
+create (InfoSys)-[:SameArea]->(Web),
+(InfoSys)-[:Related]->(Cloud),
+(InfoSys)-[:Related]->(ML),
+(ML)-[:Related]->(AI),
+(ML)-[:Related]->(Stats),
+(Cloud)-[:Related]->(Net),
+(ML)-[:Has]->(DM),
+(Cloud)-[:Has]->(HIVE),
+(InfoSys)-[:Related]->(DM),
+(Web)-[:Related]->(DM), 
+(AI)-[:Related]->(Stats)

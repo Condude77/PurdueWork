@@ -1,0 +1,11 @@
+city,state_id,state_name,county_name,population,military,incorporated,timezone,zips,id
+South Creek,WA,Washington,Pierce,2500,FALSE,TRUE,America/Los_Angeles,98580 98387 98338,1840042075
+Roslyn,WA,Washington,Kittitas,947,FALSE,TRUE,America/Los_Angeles,98941 98068 98925,1840019842
+Sprague,WA,Washington,Lincoln,441,FALSE,TRUE,America/Los_Angeles,99032,1840021107
+Gig Harbor,WA,Washington,Pierce,9507,FALSE,TRUE,America/Los_Angeles,98332 98335,1840019855
+Lake Cassidy,WA,Washington,Snohomish,3591,FALSE,TRUE,America/Los_Angeles,98223 98258 98270,1840041959
+Tenino,WA,Washington,Thurston,1830,FALSE,TRUE,America/Los_Angeles,98589,1840021144
+Jamestown,WA,Washington,Clallam,289,FALSE,FALSE,America/Los_Angeles,98382,1840037668
+Three Lakes,WA,Washington,Snohomish,3390,FALSE,FALSE,America/Los_Angeles,98290,1840018375
+Curlew Lake,WA,Washington,Ferry,573,FALSE,TRUE,America/Los_Angeles,99166,1840043278
+Chain Lake,WA,Washington,Snohomish,4280,FALSE,TRUE,America/Los_Angeles,98290,1840041915

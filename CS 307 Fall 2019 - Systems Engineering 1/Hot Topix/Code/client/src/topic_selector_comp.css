@@ -1,0 +1,185 @@
+.TopicSelect { /* Base font style */
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", sans-serif;
+    font-size: 15.2px;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    color: rgba(0, 0, 0, 0.8500);
+    background-color: #f6f6f6;
+  }
+  
+  .TopicSelect .baseFont * { /* Base font style override for UI framework components */
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", sans-serif;
+    font-size: 15.2px;
+  }
+  
+  .TopicSelect .appBg {
+    background-color: #f6f6f6;
+  }
+  
+  .TopicSelect .cardBg {
+    background-color: white;
+  }
+  
+  .TopicSelect .baseTextBg { /* Base text color as background */
+    background-color: rgba(0, 0, 0, 0.8500);
+  }
+  
+  .TopicSelect .secondaryTextColor {
+    color: rgba(0, 0, 0, 0.5000);
+  }
+  
+  .TopicSelect .secondaryTextBg {
+    background-color: rgba(0, 0, 0, 0.5000);
+  }
+  
+  .TopicSelect .primaryTextColor {
+    color: #bee9ee;
+  }
+  
+  .TopicSelect .primaryBg {
+    background-color: #bee9ee;
+  }
+  
+  .TopicSelect .highlightTextColor {
+    color: #0093d5;
+  }
+  
+  .TopicSelect .highlightBg {
+    background-color: #0093d5;
+  }
+  
+  @keyframes fadeIn {
+      0%   { opacity: 0.0; }
+      100% { opacity: 1.0; }
+  }
+  @keyframes slideIn_right {
+      0%   { transform: translateX(100%); }
+      100% { transform: translateX(0); }
+  }
+  @keyframes slideIn_bottom {
+      0%   { transform: translateY(100%); }
+      100% { transform: translateY(0); }
+  }
+  
+  @media (min-width: 320px) {
+    .mui-container {
+      max-width: 320px;
+    }
+  }
+  @media (min-width: 568px) {
+    .mui-container {
+      max-width: 568px;
+    }
+  }
+  @media (min-width: 768px) {
+    .mui-container {
+      max-width: 768px;
+    }
+  }
+  @media (min-width: 1024px) {
+    .mui-container {
+      max-width: 1024px;
+    }
+  }
+  
+  /*
+  .TopicSelect .background {
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+  }
+  
+  .TopicSelect .layoutFlow {
+    position: relative;
+    width: 100%;
+    pointer-events: none;
+  }
+  .TopicSelect .layoutFlow:before {
+    content: "";
+    display: table;
+    clear: both;
+  }
+  .App .layoutFlow .flowRow {
+    position: relative;
+    width: 100%;
+  }
+  
+  .TopicSelect .screenFgContainer {
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+  }
+  .TopicSelect .foreground {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+  }
+  */
+
+  .List {
+    margin: 10px;
+    padding: 10px;
+
+    align-items: flex-start;
+    flex-direction: row-reverse;
+    flex-flow: wrap;
+
+    justify-content: space-between;
+  }
+
+  .final_list {
+    list-style: none;
+    padding-left: 0;
+    text-align: center;
+  }
+
+  .list_div {
+    display: flex;
+    padding: 10px;
+    flex-direction: row;
+    flex-flow: row;
+    justify-content: space-between;
+  }
+
+  .item {
+    align-self: center;
+    align-content: center;
+    overflow: scroll;
+  }
+
+  .final_item {
+    align-self: center;
+    align-content: center;
+    overflow: scroll;
+    list-style: none;
+    padding-left: 0;
+  }
+
+  .comp_div {
+    width: 320px;
+    padding: 10px;
+    border: 4px solid rgb(0, 0, 0);
+    margin: 10px; 
+  }
+
+  .final_comp_div {
+    width: fit-content;
+    padding: 10px;
+    border: 4px solid rgb(0, 0, 0);
+    margin: 10px; 
+    align-self: center;
+    align-content: center;
+  }
+
+  .inner_div {
+    margin: 5px;
+  }

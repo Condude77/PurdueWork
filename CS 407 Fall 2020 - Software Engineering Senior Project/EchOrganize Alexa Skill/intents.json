@@ -1,0 +1,781 @@
+{
+    "interactionModel": {
+        "languageModel": {
+            "invocationName": "ek organize",
+            "intents": [
+                {
+                    "name": "AMAZON.NavigateHomeIntent",
+                    "samples": []
+                },
+                {
+                    "name": "AMAZON.CancelIntent",
+                    "samples": []
+                },
+                {
+                    "name": "AMAZON.HelpIntent",
+                    "samples": []
+                },
+                {
+                    "name": "AMAZON.StopIntent",
+                    "samples": []
+                },
+                {
+                    "name": "AddToDoListIntent",
+                    "slots": [
+                        {
+                            "name": "todoString",
+                            "type": "AMAZON.SearchQuery",
+                            "samples": [
+                                "add {todoString}",
+                                "I want to add {todoString} to my list",
+                                "{todoString}"
+                            ]
+                        },
+                        {
+                            "name": "todoData",
+                            "type": "AMAZON.DATE",
+                            "samples": [
+                                "On {todoData}",
+                                "{todoData}"
+                            ]
+                        }
+                    ],
+                    "samples": [
+                        "make objective {todoString}",
+                        "add",
+                        "Create to do list for {todoData}",
+                        "Create to do list",
+                        "add {todoString}"
+                    ]
+                },
+                {
+                    "name": "GetToDoListsIntent",
+                    "slots": [
+                        {
+                            "name": "todoData",
+                            "type": "AMAZON.DATE",
+                            "samples": [
+                                "For {todoData}",
+                                "{todoData}"
+                            ]
+                        }
+                    ],
+                    "samples": [
+                        "Objectives for {todoData}",
+                        "What is my plan for {todoData}",
+                        "What is my todolist for {todoData}",
+                        "What is my to do list for {todoData}",
+                        "Get to do list for {todoData}",
+                        "Get todolist for {todoData}"
+                    ]
+                },
+                {
+                    "name": "RemoveToDoListIntent",
+                    "slots": [
+                        {
+                            "name": "todoString",
+                            "type": "AMAZON.SearchQuery",
+                            "samples": [
+                                "{todoString}"
+                            ]
+                        }
+                    ],
+                    "samples": [
+                        "{todoString} is done",
+                        "checkmark {todoString}",
+                        "{todoString} is complete",
+                        "Complete",
+                        "Complete {todoString}",
+                        "Remove {todoString}",
+                        "Remove"
+                    ]
+                },
+                {
+                    "name": "CreateScheduleIntent",
+                    "slots": [],
+                    "samples": [
+                        "make a new calendar",
+                        "make new calendar",
+                        "make a new schedule",
+                        "Create new calendar",
+                        "Create new schedule",
+                        "Create a new calendar",
+                        "Create a new schedule"
+                    ]
+                },
+                {
+                    "name": "ScheduleNameIntent",
+                    "slots": [
+                        {
+                            "name": "Season",
+                            "type": "season"
+                        },
+                        {
+                            "name": "Term",
+                            "type": "Term"
+                        },
+                        {
+                            "name": "Year",
+                            "type": "AMAZON.FOUR_DIGIT_NUMBER"
+                        }
+                    ],
+                    "samples": [
+                        "{Season} {Term} {Year}"
+                    ]
+                },
+                {
+                    "name": "DateIntent",
+                    "slots": [
+                        {
+                            "name": "date",
+                            "type": "AMAZON.DATE"
+                        },
+                        {
+                            "name": "time",
+                            "type": "AMAZON.TIME"
+                        }
+                    ],
+                    "samples": [
+                        "{time}",
+                        "{date}"
+                    ]
+                },
+                {
+                    "name": "GetScheduleIntent",
+                    "slots": [],
+                    "samples": [
+                        "get my current calendar",
+                        "get current calendar",
+                        "get my current schedule",
+                        "get current schedule"
+                    ]
+                },
+                {
+                    "name": "AMAZON.YesIntent",
+                    "samples": []
+                },
+                {
+                    "name": "AMAZON.NoIntent",
+                    "samples": []
+                },
+                {
+                    "name": "NewExamIntent",
+                    "slots": [],
+                    "samples": [
+                        "add an exam",
+                        "save an exam",
+                        "create a new exam",
+                        "save a new exam"
+                    ]
+                },
+                {
+                    "name": "ClassNameIntent",
+                    "slots": [
+                        {
+                            "name": "ClassName",
+                            "type": "Class"
+                        }
+                    ],
+                    "samples": [
+                        "{ClassName}"
+                    ]
+                },
+                {
+                    "name": "GetExamsIntent",
+                    "slots": [],
+                    "samples": [
+                        "Get all my exams",
+                        "What exams do I have",
+                        "When are all my exams",
+                        "tell me about my exams",
+                        "get my exams",
+                        "when are my exams"
+                    ]
+                },
+                {
+                    "name": "ClassReminderIntent",
+                    "slots": [
+                        {
+                            "name": "inputTime",
+                            "type": "AMAZON.TIME"
+                        },
+                        {
+                            "name": "className",
+                            "type": "Class"
+                        },
+                        {
+                            "name": "classNumber",
+                            "type": "AMAZON.NUMBER"
+                        },
+                        {
+                            "name": "dayOne",
+                            "type": "AMAZON.DayOfWeek"
+                        },
+                        {
+                            "name": "dayTwo",
+                            "type": "AMAZON.DayOfWeek"
+                        },
+                        {
+                            "name": "dayThree",
+                            "type": "AMAZON.DayOfWeek"
+                        }
+                    ],
+                    "samples": [
+                        "remind me on {dayOne} {dayTwo} and {dayThree} at {inputTime} for {className} {classNumber}",
+                        "remind me on {dayOne} and {dayTwo} at {inputTime} for {className} {classNumber}",
+                        "remind me on {dayOne} at {inputTime} for {className} {classNumber}",
+                        "remind me at {inputTime} for {className} {classNumber}",
+                        "remind me for {className} {classNumber} at {inputTime}",
+                        "set a reminder for {className} {classNumber} at {inputTime}",
+                        "set a reminder at {inputTime} for {className} {classNumber}",
+                        "set a reminder at {inputTime} for {className}",
+                        "set a reminder for {className} at {inputTime}",
+                        "remind me for {className} at {inputTime}",
+                        "remind me at {inputTime} for {className}"
+                    ]
+                },
+                {
+                    "name": "RemindExamsIntent",
+                    "slots": [
+                        {
+                            "name": "className",
+                            "type": "Class"
+                        },
+                        {
+                            "name": "quantity",
+                            "type": "RelativeTime"
+                        }
+                    ],
+                    "samples": [
+                        "set a reminder for the {quantity} exam",
+                        "remind me for {quantity} upcoming exams in {className}",
+                        "remind me for all upcoming exams",
+                        "remind me for all of my exams",
+                        "remind me for all my exams",
+                        "remind me for my {quantity} {className} exam",
+                        "remind me for {quantity} of my {className} exams"
+                    ]
+                },
+                {
+                    "name": "getExamsByClass",
+                    "slots": [
+                        {
+                            "name": "Class",
+                            "type": "Class"
+                        }
+                    ],
+                    "samples": [
+                        "Do I have an upcoming exam in {Class}",
+                        "When is the next exam in {Class}",
+                        "What day is the next exam in {Class}",
+                        "When is the next {Class} exam",
+                        "When is my next exam in {Class} "
+                    ]
+                },
+                {
+                    "name": "GradeCalculatorIntent",
+                    "slots": [
+                        {
+                            "name": "earnedPoints",
+                            "type": "AMAZON.NUMBER",
+                            "samples": [
+                                "{earnedPoints} percent",
+                                "{earnedPoints} points",
+                                "I earned {earnedPoints} points",
+                                "{earnedPoints}"
+                            ]
+                        },
+                        {
+                            "name": "totalPoints",
+                            "type": "AMAZON.NUMBER",
+                            "samples": [
+                                "{totalPoints} percent",
+                                "{totalPoints} points",
+                                "It was out of {totalPoints}",
+                                "{totalPoints}"
+                            ]
+                        }
+                    ],
+                    "samples": [
+                        "Calculate my grade",
+                        "Calculate grade {earnedPoints} out of {totalPoints}"
+                    ]
+                },
+                {
+                    "name": "NextExamIntent",
+                    "slots": [],
+                    "samples": [
+                        "whats my next exam in",
+                        "what is my next exam in",
+                        "what is my next exam",
+                        "Get my next exam",
+                        "When is my next exam"
+                    ]
+                },
+                {
+                    "name": "SaveOfficeHoursIntent",
+                    "slots": [
+                        {
+                            "name": "Class",
+                            "type": "Class"
+                        }
+                    ],
+                    "samples": [
+                        "Save new office hours in {Class}",
+                        "Save office hours in {Class}",
+                        "Save office hours in {Class} for my current schedule",
+                        "Add office hours in {Class} to my current schedule"
+                    ]
+                },
+                {
+                    "name": "GetOfficeHoursIntent",
+                    "slots": [
+                        {
+                            "name": "Class",
+                            "type": "Class"
+                        }
+                    ],
+                    "samples": [
+                        "When are the next office hours in {Class}",
+                        "Get my office hours for {Class}",
+                        "When are my office hours in {Class}"
+                    ]
+                },
+                {
+                    "name": "DaysOfWeekIntent",
+                    "slots": [
+                        {
+                            "name": "day_A",
+                            "type": "AMAZON.DayOfWeek"
+                        },
+                        {
+                            "name": "day_B",
+                            "type": "AMAZON.DayOfWeek"
+                        },
+                        {
+                            "name": "day_C",
+                            "type": "AMAZON.DayOfWeek"
+                        }
+                    ],
+                    "samples": [
+                        "{day_A} {day_B} and {day_C}",
+                        "{day_A} and {day_B}",
+                        "on {day_A}"
+                    ]
+                }
+            ],
+            "types": [
+                {
+                    "name": "season",
+                    "values": [
+                        {
+                            "name": {
+                                "value": "Summer"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "Spring"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "Winter"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "Fall"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "Term",
+                    "values": [
+                        {
+                            "name": {
+                                "value": "Semester"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "Trimester"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "Quarter"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "Class",
+                    "values": [
+                        {
+                            "name": {
+                                "value": "Communications",
+                                "synonyms": [
+                                    "Com"
+                                ]
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "History"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "Music"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "Economics",
+                                "synonyms": [
+                                    "Econ"
+                                ]
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "Anthropology"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "Sociology"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "Biology",
+                                "synonyms": [
+                                    "Bio"
+                                ]
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "Chemistry",
+                                "synonyms": [
+                                    "Chem"
+                                ]
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "Physics"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "Computer Science",
+                                "synonyms": [
+                                    "CS",
+                                    "Comp Sci"
+                                ]
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "Math"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "English"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "RelativeTime",
+                    "values": [
+                        {
+                            "name": {
+                                "value": "Soonest"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "All"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "Upcoming"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "Next"
+                            }
+                        }
+                    ]
+                }
+            ]
+        },
+        "dialog": {
+            "intents": [
+                {
+                    "name": "AddToDoListIntent",
+                    "confirmationRequired": false,
+                    "prompts": {},
+                    "slots": [
+                        {
+                            "name": "todoString",
+                            "type": "AMAZON.SearchQuery",
+                            "confirmationRequired": false,
+                            "elicitationRequired": true,
+                            "prompts": {
+                                "elicitation": "Elicit.Slot.699571950688.939886437736"
+                            }
+                        },
+                        {
+                            "name": "todoData",
+                            "type": "AMAZON.DATE",
+                            "confirmationRequired": false,
+                            "elicitationRequired": true,
+                            "prompts": {
+                                "elicitation": "Elicit.Slot.699571950688.1528947675107"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "GetToDoListsIntent",
+                    "confirmationRequired": false,
+                    "prompts": {},
+                    "slots": [
+                        {
+                            "name": "todoData",
+                            "type": "AMAZON.DATE",
+                            "confirmationRequired": false,
+                            "elicitationRequired": true,
+                            "prompts": {
+                                "elicitation": "Elicit.Slot.1180573243244.896662119993"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "RemoveToDoListIntent",
+                    "confirmationRequired": false,
+                    "prompts": {},
+                    "slots": [
+                        {
+                            "name": "todoString",
+                            "type": "AMAZON.SearchQuery",
+                            "confirmationRequired": false,
+                            "elicitationRequired": true,
+                            "prompts": {
+                                "elicitation": "Elicit.Slot.1059895184348.1327813821234"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "GetScheduleIntent",
+                    "confirmationRequired": false,
+                    "prompts": {},
+                    "slots": []
+                },
+                {
+                    "name": "GradeCalculatorIntent",
+                    "confirmationRequired": false,
+                    "prompts": {},
+                    "slots": [
+                        {
+                            "name": "earnedPoints",
+                            "type": "AMAZON.NUMBER",
+                            "confirmationRequired": false,
+                            "elicitationRequired": true,
+                            "prompts": {
+                                "elicitation": "Elicit.Slot.294568741510.1112606718730"
+                            }
+                        },
+                        {
+                            "name": "totalPoints",
+                            "type": "AMAZON.NUMBER",
+                            "confirmationRequired": false,
+                            "elicitationRequired": true,
+                            "prompts": {
+                                "elicitation": "Elicit.Slot.294568741510.1458916188349"
+                            }
+                        }
+                    ]
+                }
+            ],
+            "delegationStrategy": "SKILL_RESPONSE"
+        },
+        "prompts": [
+            {
+                "id": "Elicit.Slot.932310416052.1004645578092",
+                "variations": [
+                    {
+                        "type": "PlainText",
+                        "value": "Which movie would you like to add "
+                    }
+                ]
+            },
+            {
+                "id": "Elicit.Slot.1034415917954.788060345760",
+                "variations": [
+                    {
+                        "type": "PlainText",
+                        "value": "Which movie would you like to remove "
+                    }
+                ]
+            },
+            {
+                "id": "Elicit.Slot.699571950688.939886437736",
+                "variations": [
+                    {
+                        "type": "PlainText",
+                        "value": "What do you want to get done?"
+                    },
+                    {
+                        "type": "PlainText",
+                        "value": "What do you want to add?"
+                    },
+                    {
+                        "type": "PlainText",
+                        "value": "What objective do you wish to add?"
+                    },
+                    {
+                        "type": "PlainText",
+                        "value": "What is the objective?"
+                    }
+                ]
+            },
+            {
+                "id": "Elicit.Slot.699571950688.1528947675107",
+                "variations": [
+                    {
+                        "type": "PlainText",
+                        "value": "For which date?"
+                    },
+                    {
+                        "type": "PlainText",
+                        "value": "What day is that?"
+                    },
+                    {
+                        "type": "PlainText",
+                        "value": "For what date?"
+                    }
+                ]
+            },
+            {
+                "id": "Elicit.Slot.1180573243244.896662119993",
+                "variations": [
+                    {
+                        "type": "PlainText",
+                        "value": "For what date are we looking?"
+                    }
+                ]
+            },
+            {
+                "id": "Elicit.Slot.1059895184348.1327813821234",
+                "variations": [
+                    {
+                        "type": "PlainText",
+                        "value": "What can I remove?"
+                    },
+                    {
+                        "type": "PlainText",
+                        "value": "What do you want to cross off?"
+                    },
+                    {
+                        "type": "PlainText",
+                        "value": "What objective do you want to remove?"
+                    },
+                    {
+                        "type": "PlainText",
+                        "value": "What is the objective you wish to remove?"
+                    }
+                ]
+            },
+            {
+                "id": "Elicit.Slot.846615005994.821806395702",
+                "variations": [
+                    {
+                        "type": "PlainText",
+                        "value": "How many points have you earned?"
+                    }
+                ]
+            },
+            {
+                "id": "Elicit.Slot.846615005994.782116745868",
+                "variations": [
+                    {
+                        "type": "PlainText",
+                        "value": "What is the total?"
+                    },
+                    {
+                        "type": "PlainText",
+                        "value": "What was the total?"
+                    }
+                ]
+            },
+            {
+                "id": "Elicit.Slot.294568741510.1112606718730",
+                "variations": [
+                    {
+                        "type": "PlainText",
+                        "value": "What is the number of points you earned?"
+                    },
+                    {
+                        "type": "PlainText",
+                        "value": "How many points did you earn?"
+                    },
+                    {
+                        "type": "PlainText",
+                        "value": "How many points have you earned?"
+                    }
+                ]
+            },
+            {
+                "id": "Elicit.Slot.294568741510.1458916188349",
+                "variations": [
+                    {
+                        "type": "PlainText",
+                        "value": "How many points was it out of?"
+                    },
+                    {
+                        "type": "PlainText",
+                        "value": "What highest possible number of points?"
+                    },
+                    {
+                        "type": "PlainText",
+                        "value": "What was the total number of points?"
+                    },
+                    {
+                        "type": "PlainText",
+                        "value": "How many points in total?"
+                    }
+                ]
+            },
+            {
+                "id": "Confirm.Slot.294568741510.1112606718730",
+                "variations": [
+                    {
+                        "type": "PlainText",
+                        "value": "So you have earned {earnedPoints} ?"
+                    }
+                ]
+            },
+            {
+                "id": "Elicit.Slot.1422773272240.356507974899",
+                "variations": [
+                    {
+                        "type": "PlainText",
+                        "value": "For how long?"
+                    }
+                ]
+            }
+        ]
+    }
+}

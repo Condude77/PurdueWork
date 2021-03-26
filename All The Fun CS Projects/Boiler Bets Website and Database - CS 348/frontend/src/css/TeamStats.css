@@ -1,0 +1,6 @@
+.scrollBox {
+    overflow-y: scroll;
+    height: 100vh;
+    width: 28vw;
+    left: 30%
+}

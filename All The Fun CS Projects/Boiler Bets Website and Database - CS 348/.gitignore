@@ -1,0 +1,13 @@
+backend/target/classes/server/SQL/UserSQL.class
+backend/target/classes/server/User/Email.class
+backend/target/classes/server/User/User.class
+backend/target/classes/server/User/UserController.class
+backend/target/classes/server/User/UserDeserializer.class
+backend/target/classes/server/User/UserSerializer.class
+backend/target/classes/server/main.class
+backend/target/*
+backend/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst
+backend/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst
+frontend/package-lock.json
+*.class
+backend/target/classes/server/main.class

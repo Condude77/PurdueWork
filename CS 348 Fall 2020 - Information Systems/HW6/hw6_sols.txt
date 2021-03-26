@@ -1,0 +1,145 @@
+1)
+
+db.countries.find(
+   { $or: [ {"area":{$lt:10}}, {"area":{$gt:10000000}} ] },
+   { "area": 1, "name": "$name.common", "_id":0}
+)
+
+2)
+
+db.countries.find(
+   {"translations.ita.official": "Repubblica di Malta"}, 
+   {"capital":1, "_id":0}
+)
+
+3) 
+
+db.countries.find(
+   { $and: [ {"latlng.0": { $gte:40,  $lte:45 }}, 
+             {"latlng.1": { $gte: 10, $lte:20 }} ] }, 
+   { "_id": 0, "capital": 1, "name": "$name.common" }
+)
+
+Expected Result: 
+{ "capital" : "Sarajevo", "name" : "Bosnia and Herzegovina" } 
+{ "capital" : "Tirana", "name" : "Albania" } 
+{ "capital" : "Rome", "name" : "Italy" } 
+{ "capital" : "Podgorica", "name" : "Montenegro" } 
+{ "capital" : "City of San Marino", "name" : "San Marino" } 
+{ "capital" : "Vatican City", "name" : "Vatican City" }
+
+4) 
+
+db.countries.aggregate([
+    { $project: { _id: 0, name: "$name.common", numberOfCurrencies: { $size:"$currency" }} },
+    { $sort: {numberOfCurrencies: -1, name: 1}},
+    { $limit : 5 }
+]).pretty()
+
+//Another solution
+
+db.countries.aggregate([ 
+   { $addFields: {numberOfCurrencies: {$size: "$currency"}} }, 
+   { $sort: {numberOfCurrencies: -1, "name.common": 1} }, 
+   { $limit: 5 }, 
+   { $project: {_id: 0, name: "$name.common", numberOfCurrencies:"$numberOfCurrencies" }
+}])
+
+
+Expected Result: 
+{ "name" : "Switzerland", "numberOfCurrencies" : 3 } 
+{ "name" : "United States", "numberOfCurrencies" : 3 } 
+{ "name" : "Western Sahara", "numberOfCurrencies" : 3 } 
+{ "name" : "Bhutan", "numberOfCurrencies" : 2 } 
+{ "name" : "Bolivia", "numberOfCurrencies" : 2 }
+
+5)
+
+db.countries.aggregate([
+   { $group: {_id: "$subregion", totalArea: {$sum:"$area"} } }, 
+   { $sort: {totalArea: -1} }, 
+   { $project: {_id: 1, totalArea: 1} }
+])
+
+Expected Result: 
+{ "_id" : "Northern America", "totalArea" : 21523696.2 } 
+{ "_id" : "Eastern Europe", "totalArea" : 18846226 }
+{ "_id" : "South America", "totalArea" : 17837285 } 
+{ "_id" : "", "totalArea" : 14008208 } 
+{ "_id" : "Eastern Asia", "totalArea" : 11907076 }
+...
+Output is trimmed (check full output in the fullOutput.json file)
+
+6)
+
+var mapFunction1 = function() {
+   emit(this.subregion, this.area);
+}
+
+var reduceFunction1 = function(keyRegion, valueArea) {
+   return Array.sum(valueArea);
+}
+
+db.countries.mapReduce(mapFunction1, reduceFunction1, {
+   out: { inline: 1 }
+})
+
+
+Expected Result: 
+{
+   "results": [ 
+   { 
+       "_id" : "Eastern Africa", 
+       "value" : 6361716 
+   }, 
+   { 
+       "_id" : "Southern Asia", 
+       "value" : 6868982 }, 
+...
+Output is trimmed (check full output in the fullOutput.json file)
+
+7)
+
+var mapFunction2 = function() {
+   if ( this.subregion == "Southern Asia" ) {
+      splitName = this.name.official.split(" ");
+      splitName.forEach(word => emit(word, 1));
+   }
+}
+
+var reduceFunction2 = function(keyWord, valueCount) {
+   return Array.sum(valueCount);
+}
+
+db.countries.mapReduce(mapFunction2, reduceFunction2, {
+   out: { inline: 1 }
+})
+
+9)
+
+db.countries.aggregate([
+   { $match: {"name.common": "United States"} }, 
+   { $unwind: "$borders" }, 
+   { $lookup: 
+      {
+         from: "countries", 
+         localField: "borders", 
+         foreignField: "cca3", 
+         as: "otherCountry"
+      }
+   }, 
+  { $unwind: "$otherCountry" }, 
+  { $project: {_id: 0, name: "$name.common", neighborCountryname: "$otherCountry.name.common"} }
+])
+
+
+Expected result: 
+{ 
+   "results" : [ 
+      { "_id" : "Kingdom", "value" : 1 }, 
+      { "_id" : "the", "value" : 1 }, 
+      { "_id" : "of", "value" : 9 }, 
+      { "_id" : "Republic", "value" : 8 },
+      ...
+Output is trimmed (check full output in the fullOutput.json file)
+

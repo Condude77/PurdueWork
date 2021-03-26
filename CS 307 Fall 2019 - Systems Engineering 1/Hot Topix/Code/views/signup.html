@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <title>Register User</title>
+    <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i">
+    <link rel="stylesheet" href="assets/fonts/ionicons.min.css">
+    <link rel="stylesheet" href="assets/css/PHP-Contact-Form-dark-1.css">
+    <link rel="stylesheet" href="assets/css/PHP-Contact-Form-dark.css">
+    <link rel="stylesheet" href="assets/css/styles.css">
+
+
+</head>
+
+<body>
+
+    <div id="contact">
+        <div class="container">
+            <div class="justify-content-center align-items-center intro">
+                <h2>Hot topix</h2><i class="icon ion-fireball border-warning shadow-none d-flex justify-content-center align-items-center align-self-center flex-wrap" style="color: rgb(247,12,12);font-size: 100px;height: 60;"></i>
+                <p>Create New Account</p>
+            </div>
+            <form method="post" action="/signup">
+                <div class="messages"></div>
+                <div class="controls">
+                    <div class="form-row">
+                        <div class="col-md-6">
+                            <div class="form-group"><label for="form_name">Username* </label><input class="form-control" type="text" id="form_name" data-error="Vorname erforderlich." name="username" required="" placeholder="Username">
+                                <div class="help-block with-errors"></div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group"><label for="form_lastname">Password* </label><input class="form-control" type="password" id="form_lastname" data-error="Nachname erforderlich." name="password" required="" placeholder="Password">
+                                <div class="help-block with-errors"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="col-md-6">
+                        <div class="form-group"><label for="form_email">E-Mail* </label><input class="form-control" type="email" id="form_email" data-error="Vorname erforderlich." name="email" required="" placeholder="Email">
+                            <div class="help-block with-errors"></div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group"><label for="form_phone">Full Name</label><input class="form-control" type="text" id="form_lastname" data-error="Nachname erforderlich." name="lastname" placeholder="ex. John Smith">
+                            <div class="help-block with-errors"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="col-md-12"><button class="btn btn-success btn-send" value="Submit" type="submit">Send</button></div>
+                </div>
+                <div class="form-row">
+                    <div class="col-md-12">
+                        <p class="text-muted"><strong>*</strong> Required</p>
+
+                        <p class="text-muted"> Already have account? Click <a href="/login">Here</a></p>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+    <script src="assets/js/jquery.min.js"></script>
+    <script src="assets/bootstrap/js/bootstrap.min.js"></script>
+    <script src="assets/js/PHP-Contact-Form-dark-1.js"></script>
+    <script src="assets/js/PHP-Contact-Form-dark.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,17 @@
+CREATE (:Player {name:"Lebron James"}),(:Team {name:"Cleveland Cavaliers"}), 
+(:State {name:"Ohio"})
+
+match (p1:Player {name:"Lebron James"}),(t1:Team {name:"Cleveland Cavaliers"}), 
+(s1:State {name:"Ohio"})
+create (p1)-[:PlayedIn]->(t1)-[:LocatedIn]->(s1), (p1)-[:BornIn]->(s1)
+
+CREATE (:Player {name:"James Harden"}), (:Player {name:"russell westbrook"}), 
+(:Team {name:"Houston Rockets"}), (:Team {name:"Oklahoma City Thunder"}), 
+(:State {name:"California"}), (:State {name:"Texas"}), (:State {name:"Oklahoma"})
+
+match (p1:Player {name:"James Harden"}), (p2:Player {name:"russell westbrook"}), 
+(t1:Team {name:"Houston Rockets"}), (t2:Team {name:"Oklahoma City Thunder"}), 
+(s1:State {name:"California"}), (s2:State {name:"Texas"}), (s3:State {name:"Oklahoma"})
+create (p1)-[:PlayedIn]->(t1), (p1)-[:PlayedIn]->(t2), (p2)-[:PlayedIn]->(t1),
+(p2)-[:PlayedIn]->(t2), (t1)-[:LocatedIn]->(s2), (t2)-[:LocatedIn]->(s3),
+ (p1)-[:BornIn]->(s1), (p2)-[:BornIn]->(s1)

@@ -1,0 +1,212 @@
+Question 5)
+
+{ "_id" : "Northern America", "totalArea" : 21523696.2 }
+{ "_id" : "Eastern Europe", "totalArea" : 18846226 }
+{ "_id" : "South America", "totalArea" : 17837285 }
+{ "_id" : "", "totalArea" : 14008208 }
+{ "_id" : "Eastern Asia", "totalArea" : 11907076 }
+{ "_id" : "Australia and New Zealand", "totalArea" : 7962676 }
+{ "_id" : "Northern Africa", "totalArea" : 7905959 }
+{ "_id" : "Middle Africa", "totalArea" : 7232412 }
+{ "_id" : "Southern Asia", "totalArea" : 6868982 }
+{ "_id" : "Eastern Africa", "totalArea" : 6361716 }
+{ "_id" : "Western Africa", "totalArea" : 6141565 }
+{ "_id" : "Western Asia", "totalArea" : 4820813 }
+{ "_id" : "South-Eastern Asia", "totalArea" : 4537819 }
+{ "_id" : "Central Asia", "totalArea" : 4003451 }
+{ "_id" : "Southern Africa", "totalArea" : 2676371 }
+{ "_id" : "Central America", "totalArea" : 2486653 }
+{ "_id" : "Northern Europe", "totalArea" : 1750612 }
+{ "_id" : "Southern Europe", "totalArea" : 1316969.44 }
+{ "_id" : "Western Europe", "totalArea" : 1109090.02 }
+{ "_id" : "Melanesia", "totalArea" : 540772 }
+{ "_id" : "Caribbean", "totalArea" : 233863 }
+{ "_id" : "Polynesia", "totalArea" : 8678 }
+{ "_id" : "Micronesia", "totalArea" : 3187 }
+
+
+Question 6)
+
+{
+        "results" : [
+                {
+                        "_id" : "Eastern Africa",
+                        "value" : 6361716
+                },
+                {
+                        "_id" : "Southern Asia",
+                        "value" : 6868982
+                },
+                {
+                        "_id" : "Western Asia",
+                        "value" : 4820813
+                },
+                {
+                        "_id" : "Northern Europe",
+                        "value" : 1750612
+                },
+                {
+                        "_id" : "",
+                        "value" : 14008208
+                },
+                {
+                        "_id" : "Southern Africa",
+                        "value" : 2676371
+                },
+                {
+                        "_id" : "Central Asia",
+                        "value" : 4003451
+                },
+                {
+                        "_id" : "Micronesia",
+                        "value" : 3187
+                },
+                {
+                        "_id" : "Central America",
+                        "value" : 2486653
+                },
+                {
+                        "_id" : "South America",
+                        "value" : 17837285
+                },
+                {
+                        "_id" : "Middle Africa",
+                        "value" : 7232412
+                },
+                {
+                        "_id" : "Northern Africa",
+                        "value" : 7905959
+                },
+                {
+                        "_id" : "Southern Europe",
+                        "value" : 1316969.44
+                },
+                {
+                        "_id" : "Eastern Asia",
+                        "value" : 11907076
+                },
+                {
+                        "_id" : "Northern America",
+                        "value" : 21523696.2
+                },
+                {
+                        "_id" : "Eastern Europe",
+                        "value" : 18846226
+                },
+                {
+                        "_id" : "Australia and New Zealand",
+                        "value" : 7962676
+                },
+                {
+                        "_id" : "South-Eastern Asia",
+                        "value" : 4537819
+                },
+                {
+                        "_id" : "Western Europe",
+                        "value" : 1109090.02
+                },
+                {
+                        "_id" : "Melanesia",
+                        "value" : 540772
+                },
+                {
+                        "_id" : "Western Africa",
+                        "value" : 6141565
+                },
+                {
+                        "_id" : "Caribbean",
+                        "value" : 233863
+                },
+                {
+                        "_id" : "Polynesia",
+                        "value" : 8678
+                }
+        ],
+        "ok" : 1
+}
+
+
+
+Question 7)
+
+{
+        "results" : [
+                {
+                        "_id" : "Kingdom",
+                        "value" : 1
+                },
+                {
+                        "_id" : "the",
+                        "value" : 1
+                },
+                {
+                        "_id" : "of",
+                        "value" : 9
+                },
+                {
+                        "_id" : "Bangladesh",
+                        "value" : 1
+                },
+                {
+                        "_id" : "Iran",
+                        "value" : 1
+                },
+                {
+                        "_id" : "Republic",
+                        "value" : 8
+                },
+                {
+                        "_id" : "Afghanistan",
+                        "value" : 1
+                },
+                {
+                        "_id" : "Nepal",
+                        "value" : 1
+                },
+                {
+                        "_id" : "People's",
+                        "value" : 1
+                },
+                {
+                        "_id" : "Sri",
+                        "value" : 1
+                },
+                {
+                        "_id" : "Pakistan",
+                        "value" : 1
+                },
+                {
+                        "_id" : "Bhutan",
+                        "value" : 1
+                },
+                {
+                        "_id" : "Maldives",
+                        "value" : 1
+                },
+                {
+                        "_id" : "Democratic",
+                        "value" : 2
+                },
+                {
+                        "_id" : "Lanka",
+                        "value" : 1
+                },
+                {
+                        "_id" : "India",
+                        "value" : 1
+                },
+                {
+                        "_id" : "Federal",
+                        "value" : 1
+                },
+                {
+                        "_id" : "Islamic",
+                        "value" : 3
+                },
+                {
+                        "_id" : "Socialist",
+                        "value" : 1
+                }
+        ],
+        "ok" : 1
+}

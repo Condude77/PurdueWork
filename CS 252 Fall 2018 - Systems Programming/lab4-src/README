@@ -1,0 +1,18 @@
+Part 3
+Step 3 would print several A and then several B and then a mixture of A, B, and C over and over in a loop.
+Step 5 would do the same in addition to printing D and E in long segments.
+
+Part 4
+| execution                                | system time | user time | real time |
+| pthread_mutex (count)                    | 0.00        | 0.42      | 0:00.43   |
+| spin lock (count_spin with thr_yield)    | 0.12        | 0.53      | 0:00.44   |
+| spin_lock (count_spin without thr_yield) | 0.00        | 1.36      | 0:00.81   |
+
+The thr_yield() method in count_spin forces the spin lock to execute in system space, instead of in user space. Without calling thr_yield(), the spin lock executes in user space entirely, without looking to system space for help.
+
+Using the mutex lock in count runs entirely in user space and provides each thread with a mutually exclusive lock on the portion of code being executed. When thr_yield() is used, the threads wait in system space instead of user space like mutex.
+
+Part 6
+In little endian 0xdeadbeef would be written into memory backwards so we would need it to be written fe be ad de in each 8 bit memory address.
+The code I used to execute the exploit was `printf "aaaaaaaaaaaaaaa\xef\xbe\xad\xde"` however the 15 characters that are printed do not matter as they are just needed to fill the buffer.
+The part of the code after is used to overwrite set_me to the correct hex values. The reason this works is because the place in memory for set_me is placed right after the address for buf, and by taking in a value that is too large for the buffer it overwrites the value of set_me.

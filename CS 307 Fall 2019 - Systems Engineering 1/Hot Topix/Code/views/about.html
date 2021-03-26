@@ -1,0 +1,37 @@
+<html lang="en">
+<head>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
+</head>
+<body>
+  <div>
+  <div>
+      <nav class="navbar navbar-inverse" role="navigation" style="padding-left:130px;">
+          <ul class="nav navbar-nav">
+              <li><a href="/">Home</a></li>
+              <li class="active"><a href="/about">About us<span class="sr-only">(current)</span></a></li>
+              <li><a href="/contact">Contact us</a></li>
+              <li><a href="/login">Login</a></li>
+              <li><a href="/signup">Sign Up</a></li>
+              <li><a href="/edit_profile">Edit Profile</a></li>
+              <li><a href="/follow_user">Follow/Unfollow User</a></li>
+          </ul>
+      </nav>
+</div>
+  <br/>
+  <div class="jumbotron">
+  <p>
+    Put detail description about you and your company.
+  </p>
+  <p>
+    <form action="/search" method="get" class="form-inline">
+      <div class="form-group">
+        <input type = "Search" name = "username" placeholder="Search User..." class="form-control">
+        <button class="btn btn-primary form-btn" value="Submit" type="submit">SEARCH </button>
+      </div>
+    </form>
+  </p>
+</div>
+  </div>
+</body>
+</html>

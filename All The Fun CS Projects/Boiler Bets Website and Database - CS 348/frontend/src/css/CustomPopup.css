@@ -1,0 +1,23 @@
+.popup {  
+    position: fixed;  
+    width: 25%;  
+    height: 15%;  
+    top: 0%;  
+    left: 40%;  
+    right: -10%;  
+    bottom: 25%;  
+    margin: auto;  
+    background-color: white;
+    word-wrap: break-word;
+  }  
+  .popup\_inner {  
+    position: absolute;  
+    left: 25%;  
+    right: 25%;  
+    top: 25%;  
+    bottom: 25%;  
+    margin: auto;  
+    border-radius: 20px;  
+    background: white;
+    word-wrap: break-word;
+  }

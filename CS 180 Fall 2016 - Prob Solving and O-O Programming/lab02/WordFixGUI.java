@@ -1,0 +1,29 @@
+import javax.swing.*;
+/**
+ * cs180 - Lab 02
+ *
+ * Takes the input of the user and decodes the word by switching the first and last letter and exchaning letters before and after the asterisk. Then it drops the asterisk.
+ *
+ * Connor Brown, brow1325@purdue.edu, B09
+ *
+ * 1.0 8/30/16
+ *
+ */
+
+public class WordFixGUI {
+    public static void main(String[] ars) {
+
+	String s = (String)JOptionPane.showInputDialog("Enter the word to be deciphered:");
+	
+	int wordLength = s.length(); //gets the length of the word
+	char firstLetter = s.charAt(s.length()-1);//gets the first letter
+	char lastLetter = s.charAt(0);//gets the last letter
+	int asterisk = s.indexOf("*");//finds the asterisk
+	String step1 = s.substring(asterisk, s.length()-1);
+	String step2 = s.substring(1, asterisk);
+	String step3 = firstLetter + step1 + step2 + lastLetter;
+	String d = step3.replace("*", "");
+
+	JOptionPane.showMessageDialog(null, "Input: " + s + "\nResult: " + d);
+    }
+}

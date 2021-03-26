@@ -1,0 +1,163 @@
+For questions 5 to 13, consider the following graph database about publications. 
+The database description can be found in the following url:
+https://neo4j.com/graphgist/interpreting-citation-patterns-in-academic-publications-a-research-aid
+
+- To create the database, execute the cypher queries in the databaseCreateQueries.txt file.
+- Write your answers in HW5_Neo4j.py
+
+Useful hints:
+- To view the full graph in neo4j, you can run the following query:
+match(a:Article)--(b)--(c)--(d)
+return a,b,c,d
+
+- You can use commas to separate multiple patterns in the match clause. 
+For example, if a connects to b, b connects to c, and c connects to a, we can write the following match:
+match (a)--(b)--(c),
+      (c)--(a)
+Look at queries 6 and 7 in the url above for more examples. Quiz 7 also has one example of using commas in the match clause.      
+
+--------------------------------------------------------------------
+
+Question 5) (5 points) 
+For each author, list their name and article titles (do not include chapters or books). 
+
+Sample answer:
+╒═════════════════╤══════════════════════════════════════════════════════════╕
+│"author.name"    │"article.title"                                           │
+╞═════════════════╪══════════════════════════════════════════════════════════╡
+│"Gorman, Michael"│"Independence and Substance"                              │
+├─────────────────┼──────────────────────────────────────────────────────────┤
+│"Toner, Patrick" │"Independence Accounts of Substance and Substantial Parts"│
+├─────────────────┼──────────────────────────────────────────────────────────┤
+│"Gorman, Michael"│"On Substantial Independence: a Reply to Patrick Toner"   │
+├─────────────────┼──────────────────────────────────────────────────────────┤
+│"Gorman, Michael"│"Substance and Identity-Dependence"                       │
+├─────────────────┼──────────────────────────────────────────────────────────┤
+│"Fine, Kit"      │"Ontological Dependence"                                  │
+└─────────────────┴──────────────────────────────────────────────────────────┘
+
+Question 6) (5 points) 
+For each author, list their name and publication titles (include only articles and chapters). 
+List the type of publication as well (you may use the function labels to return the label(s) for a certain node).
+
+Sample answer:
+╒═══════════════════╤══════════════════════════════════════════════════════════╤══════════════════════════╕
+│"author.name"      │"paper_or_chapter.title"                                  │"publicationType"         │
+╞═══════════════════╪══════════════════════════════════════════════════════════╪══════════════════════════╡
+│"Gorman, Michael"  │"On Substantial Independence: a Reply to Patrick Toner"   │["Article"]               │
+├───────────────────┼──────────────────────────────────────────────────────────┼──────────────────────────┤
+│"Gorman, Michael"  │"Independence and Substance"                              │["Article"]               │
+├───────────────────┼──────────────────────────────────────────────────────────┼──────────────────────────┤
+│"Gorman, Michael"  │"Substance and Identity-Dependence"                       │["Article"]               │
+├───────────────────┼──────────────────────────────────────────────────────────┼──────────────────────────┤
+│"Toner, Patrick"   │"Independence Accounts of Substance and Substantial Parts"│["Article"]               │
+├───────────────────┼──────────────────────────────────────────────────────────┼──────────────────────────┤
+│"Koslicki, Kathrin"│"Substance, Independence, and Unity"                      │["Chapter"]               │
+├───────────────────┼──────────────────────────────────────────────────────────┼──────────────────────────┤
+│"Fine, Kit"        │"Ontological Dependence"                                  │["Article"]               │
+└───────────────────┴──────────────────────────────────────────────────────────┴──────────────────────────┘
+
+Question 7) (5 points) 
+For each author, list their name and publication titles (include only articles, chapters, and books). 
+List the type of publication as well (you may use the function labels to return the label(s) for a certain node).
+
+Sample answer:
+╒═══════════════════╤══════════════════════════════════════════════════════════╤═════════════════════╕
+│"author.name"      │"publication.title"                                       │"labels(publication)"│
+╞═══════════════════╪══════════════════════════════════════════════════════════╪═════════════════════╡
+│"Gorman, Michael"  │"On Substantial Independence: a Reply to Patrick Toner"   │["Article"]          │
+├───────────────────┼──────────────────────────────────────────────────────────┼─────────────────────┤
+│"Gorman, Michael"  │"Independence and Substance"                              │["Article"]          │
+├───────────────────┼──────────────────────────────────────────────────────────┼─────────────────────┤
+│"Gorman, Michael"  │"Substance and Identity-Dependence"                       │["Article"]          │
+├───────────────────┼──────────────────────────────────────────────────────────┼─────────────────────┤
+│"Toner, Patrick"   │"Independence Accounts of Substance and Substantial Parts"│["Article"]          │
+├───────────────────┼──────────────────────────────────────────────────────────┼─────────────────────┤
+│"Koslicki, Kathrin"│"Substance, Independence, and Unity"                      │["Chapter"]          │
+├───────────────────┼──────────────────────────────────────────────────────────┼─────────────────────┤
+│"Fine, Kit"        │"Ontological Dependence"                                  │["Article"]          │
+├───────────────────┼──────────────────────────────────────────────────────────┼─────────────────────┤
+│"Feser, Edward"    │"Aristotle on Method and Metaphysics"                     │["Book"]             │
+└───────────────────┴──────────────────────────────────────────────────────────┴─────────────────────┘
+
+Question 8) (5 points) 
+List names of authors and the number of publications (articles, chapters, and books) each has.
+
+Sample answer:
+╒═══════════════════╤═══════════════════╕
+│"author.name"      │"publication_count"│
+╞═══════════════════╪═══════════════════╡
+│"Gorman, Michael"  │3                  │
+├───────────────────┼───────────────────┤
+│"Toner, Patrick"   │1                  │
+├───────────────────┼───────────────────┤
+│"Koslicki, Kathrin"│1                  │
+├───────────────────┼───────────────────┤
+│"Fine, Kit"        │1                  │
+├───────────────────┼───────────────────┤
+│"Feser, Edward"    │1                  │
+└───────────────────┴───────────────────┘
+
+Question 9) (5 points) 
+List titles and number of pages for articles that has 10 pages or less.
+Note: the pp property is a list. You can access list elements using brackets (e.g., pp[0])
+
+Sample answer:
+╒══════════════════════════════════════════════════════════╤═══════════════╕
+│"a.title"                                                 │"numberOfPages"│
+╞══════════════════════════════════════════════════════════╪═══════════════╡
+│"Independence Accounts of Substance and Substantial Parts"│7              │
+└──────────────────────────────────────────────────────────┴───────────────┘
+
+Question 10) (8 points) 
+List the name of any author who has a pair of articles with one of them citing the other. 
+Include the titles of the two articles.
+
+Sample answer:
+╒═════════════════╤═══════════════════════════════════════════════════════╤═══════════════════════════════════╕
+│"a1.name"        │"p1.title"                                             │"p2.title"                         │
+╞═════════════════╪═══════════════════════════════════════════════════════╪═══════════════════════════════════╡
+│"Gorman, Michael"│"On Substantial Independence: a Reply to Patrick Toner"│"Substance and Identity-Dependence"│
+└─────────────────┴───────────────────────────────────────────────────────┴───────────────────────────────────┘
+
+Question 11) (7 points) 
+For each publication (article or chapter), list the number of (incoming) citations the publication has. 
+Keep only publications with 2 citations or more.
+
+Sample answer:
+╒══════════════════════════════════════════════════════════╤═══════════════════╕
+│"publication.title"                                       │"publication_count"│
+╞══════════════════════════════════════════════════════════╪═══════════════════╡
+│"Independence and Substance"                              │2                  │
+├──────────────────────────────────────────────────────────┼───────────────────┤
+│"Independence Accounts of Substance and Substantial Parts"│2                  │
+├──────────────────────────────────────────────────────────┼───────────────────┤
+│"Substance and Identity-Dependence"                       │2                  │
+└──────────────────────────────────────────────────────────┴───────────────────┘
+
+Question 12) (10 points) 
+List article title, journal title where the article is published, and author name(s) for articles cited twice or more.
+
+Sample answer:
+╒═══════════════════════════════════════╤══════════════════════════════════════════════════════════╤═════════════════╤═════════════════╕
+│"journal.title"                        │"article.title"                                           │"citations_count"│"author.name"    │
+╞═══════════════════════════════════════╪══════════════════════════════════════════════════════════╪═════════════════╪═════════════════╡
+│"International Philosophical Quarterly"│"Independence and Substance"                              │2                │"Gorman, Michael"│
+├───────────────────────────────────────┼──────────────────────────────────────────────────────────┼─────────────────┼─────────────────┤
+│"Philosophical Studies"                │"Independence Accounts of Substance and Substantial Parts"│2                │"Toner, Patrick" │
+├───────────────────────────────────────┼──────────────────────────────────────────────────────────┼─────────────────┼─────────────────┤
+│"Philosophical Papers"                 │"Substance and Identity-Dependence"                       │2                │"Gorman, Michael"│
+└───────────────────────────────────────┴──────────────────────────────────────────────────────────┴─────────────────┴─────────────────┘
+
+Question 13) (10 points) 
+In addition to using them in the match clause, patterns can also be used in the Where clause. 
+For examples, look at queries 6 and 7 in the url above. 
+Use pattern(s) in the where clause to find a pair of articles published in different issues for the same journal where one of the articles cites the other
+Include the title and issue number for both articles.
+
+Sample answer:
+╒═══════════════════════════════════════════════════════╤══════════╤══════════════════════════════════════════════════════════╤══════════╕
+│"a1.title"                                             │"i1.issue"│"a2.title"                                                │"i2.issue"│
+╞═══════════════════════════════════════════════════════╪══════════╪══════════════════════════════════════════════════════════╪══════════╡
+│"On Substantial Independence: a Reply to Patrick Toner"│2         │"Independence Accounts of Substance and Substantial Parts"│1         │
+└───────────────────────────────────────────────────────┴──────────┴──────────────────────────────────────────────────────────┴──────────┘

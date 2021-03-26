@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <title>Edit Profile</title>
+    <!-- <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css"> -->
+    <link rel="stylesheet" href="assets/fonts/ionicons.min.css">
+    <link rel="stylesheet" href="assets/css/styles.min.css">
+    <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="assets/css/Profile-Edit-Form-1.css">
+    <link rel="stylesheet" href="assets/css/Profile-Edit-Form.css">
+    <link rel="stylesheet" href="assets/css/styles.css">
+
+</head>
+
+<body style="background-color:<%= user.backgroundColor1 %>;">
+
+    <div>
+        <!-- <nav class="navbar navbar-inverse" role="navigation" style="padding-left:130px;">
+            <ul class="nav navbar-nav">
+                <li><a href="/">Home</a></li>
+                <li><a href="/home">Your Stream</a></li>
+                <li><a href="/about">About us</a></li>
+                <li><a href="/contact">Contact us</a></li>
+                <li><a href="/login">Login</a></li>
+                <li><a href="/signup">Sign Up</a></li>
+                <li class="active"><a href="/edit_profile">Edit Profile<span class="sr-only">(current)</span></a></li>
+                <li><a href="/follow_user">Follow User</a></li>
+                <li><a href="/logout">Logout</a></li>
+            </ul>
+        </nav> -->
+    </div>
+
+    <div class="container profile profile-view">
+        <div class="row">
+            <div class="col-md-12 alert-col relative">
+                <div class="alert alert-info absolue center" role="alert"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button><span>Profile save with success</span></div>
+            </div>
+        </div>
+        <form method="post" action="/edit_profile">
+            <div class="form-row profile-row">
+                <div class="col-md-4 relative">
+                    <div class="avatar">
+                        <div class="avatar-bg center"></div>
+                    </div><input aria-label="Profile Picture" type="file" style = "background-color:#FFFFFF; border:1px solid #000000;" class="form-control" name="avatar-file"></div>
+                <div class="col-md-8">
+                    <h1 style="color:<%= user.backgroundColor2 %>;">Profile </h1>
+                    <hr>
+
+                    <!-- <div class="form-row">
+                        <div class="col-sm-12 col-md-6">
+                            <div class="form-group"><label>Full Name </label><input class="form-control" type="text" name="firstname"></div>
+                        </div>
+                        <div class="col-sm-12 col-md-6">
+                            <div class="form-group"><label>Last Name </label><input class="form-control" type="text" name="lastname"></div>
+                        </div>
+                    </div> -->
+                    <div class="form-group"><label style="color:<%= user.backgroundColor2 %>;">Full Name </label><input aria-label= "Full Name" style = "background-color:#FFFFFF; border:1px solid #000000;" class="form-control" type="text" value="<%= user.fullname %>" name="fullname"></div>
+
+                    <div class="form-group"><label style="color:<%= user.backgroundColor2 %>;">Username </label><input aria-label= "Username" style = "background-color:#FFFFFF; border:1px solid #000000;" class="form-control" type="text" value="<%= user.username %>" name="username" readonly="true"></div>
+                    <div class="form-group"><label style="color:<%= user.backgroundColor2 %>;">Email </label><input aria-label= "Email" style = "background-color:#FFFFFF; border:1px solid #000000;" class="form-control" type="email" value="<%= user.email %>" name="email" readonly="true"></div>
+                    <div class="form-row">
+                        <div class="col-sm-12 col-md-6">
+                            <div class="form-group"><label style="color:<%= user.backgroundColor2 %>;">Password </label><input aria-label= "Password" style = "background-color:#FFFFFF; border:1px solid #000000;" class="form-control" type="password" name="password" autocomplete="off" ></div>
+                        </div>
+                        <div class="col-sm-12 col-md-6">
+                            <div class="form-group"><label style="color:<%= user.backgroundColor2 %>;">Confirm Password</label><input aria-label="Confirm Password" style = "background-color:#FFFFFF; border:1px solid #000000;" class="form-control" type="password" name="confirmpass" autocomplete="off"></div>
+                        </div>
+                    </div>
+                    <div class="form-group"><label style="color:<%= user.backgroundColor2 %>;">Bio </label><input aria-label="Bio" style = "background-color:#FFFFFF; border:1px solid #000000;" class="form-control" type="text" value="<%= user.bio %>" name="bio"></div>
+                    <select aria-label="Color Select" name="colorSelect">
+                      <option value="light" >Light Mode</option>
+                      <option value="dark" >Dark Mode</option>
+                      <option value="red" >Red Mode</option>
+                      <option value="green" >Green Mode</option>
+                      <option value="blue" >Blue Mode</option>
+                    </select>
+                    <hr>
+                    <div class="form-row" style="align-content: flex-end;">
+                        <div class="col-md-12 content-right">
+                            <button aria-label="Submit Button" class="btn btn-primary form-btn" value="Submit" type="submit">SAVE </button>
+                            <a aria-label="Cancel Button" class="btn btn-primary form-btn" href="/home">CANCEL</a>
+                        </div>
+                    </div>
+
+
+                </div>
+            </div>
+        </form>
+        <form method="post" action="/edit_profile/delete">
+            <button type="Delete User Button">Delete User</button><br>
+        </form>
+    </div>
+    <script src="assets/js/jquery.min.js"></script>
+    <script src="assets/bootstrap/js/bootstrap.min.js"></script>
+    <script src="assets/js/Profile-Edit-Form.js"></script>
+
+
+</body>
+
+</html>
