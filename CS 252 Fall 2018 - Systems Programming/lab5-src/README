@@ -1,0 +1,15 @@
+Connor Brown
+CS 252 Lab 5
+
+Features that work
+-Basic Server
+-3 Concurrency modes
+
+Features that don't work
+-Browsing Directories
+-CGI-BIN
+-Loadable Modules
+-Stat and Log Pages
+
+Extra Features
+-None

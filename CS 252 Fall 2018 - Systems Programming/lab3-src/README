@@ -1,0 +1,27 @@
+1. FEATURES THAT WORK
+- Part 1
+  - Command Execution
+  - File Redirection
+  - Pipes
+  - isatty()
+- Part 2
+  - Ctrl-C
+  - Zombie Elimination
+  - Exit
+  - Escaping
+  - Builtin Functions
+  - Creating Default Source File
+  - Subshells
+- Part 3
+  - Regular and Some Special Environment Variables
+  - Tilde Expansion
+  - Left, Right, and Backspace of Edit Mode
+
+2. FEATURES THAT DON'T WORK
+- Part 3
+  - WildCards
+  - Delete Key, Home Key, and End Key of Edit Mode
+  - History
+
+3. EXTRA FEATURES
+- None

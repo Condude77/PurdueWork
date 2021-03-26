@@ -1,0 +1,77 @@
+[master 7005999] 6 of 36
+ Committer: CS24000 Account <cs240@data.cs.purdue.edu>
+Your name and email address were configured automatically based
+on your username and hostname. Please check that they are accurate.
+You can suppress this message by setting them explicitly. Run the
+following command and follow the instructions in your editor to edit
+your configuration file:
+
+    git config --global --edit
+
+After doing this, you may fix the identity used for this commit with:
+
+    git commit --amend --reset-author
+
+ 11 files changed, 164 insertions(+)
+ create mode 100644 .local.git.out
+ create mode 100644 .local.total.out
+ create mode 100644 diff.out
+ create mode 100644 mytable.ll
+ create mode 100755 ptr-simple
+ create mode 100755 simple_list
+ create mode 100755 test_linked_list
+ create mode 100644 test_linked_list.org.out
+ create mode 100644 test_linked_list.out
+ create mode 100644 total.out
+ create mode 100644 total.txt
+[master cba5451] 6 of 36
+ 7 files changed, 42 insertions(+), 1 deletion(-)
+ create mode 100644 table1.ll
+[master 8ef5c1c] 12 of 36
+ 6 files changed, 36 insertions(+), 3 deletions(-)
+ rewrite test_linked_list (71%)
+[master 0d9295a] 12 of 36
+ 5 files changed, 16 insertions(+), 1 deletion(-)
+[master 820aff7] 15 of 36
+ 6 files changed, 13 insertions(+), 3 deletions(-)
+[master be3dd3e] 18 of 36
+ 6 files changed, 7 insertions(+), 3 deletions(-)
+[master decbe95] 18 of 36
+ 5 files changed, 25 insertions(+), 2 deletions(-)
+[master 0e942b7] 21 of 36
+ 6 files changed, 18 insertions(+), 13 deletions(-)
+[master 1cf7883] 21 of 36
+ 5 files changed, 12 insertions(+), 2 deletions(-)
+ rewrite test_linked_list (77%)
+[master a057848] 21 of 36
+ 3 files changed, 6 insertions(+), 1 deletion(-)
+[master baadd32] 21 of 36
+ 7 files changed, 68 insertions(+), 62 deletions(-)
+ rewrite test_linked_list.out (100%)
+[master 60b473a] 21 of 36
+ 3 files changed, 6 insertions(+), 1 deletion(-)
+[master 859fb44] 21 of 36
+ 5 files changed, 9 insertions(+), 1 deletion(-)
+[master 21a303c] 21 of 36
+ 5 files changed, 58 insertions(+), 12 deletions(-)
+ rewrite test_linked_list (78%)
+[master 5958b9e] 24 of 36
+ 6 files changed, 58 insertions(+), 5 deletions(-)
+ rewrite test_linked_list (79%)
+[master 556b183] 27 of 36
+ 6 files changed, 8 insertions(+), 3 deletions(-)
+[master 841ee77] 30 of 36
+ 6 files changed, 19 insertions(+), 20 deletions(-)
+[master 5a7c459] 33 of 36
+ 8 files changed, 71 insertions(+), 71 deletions(-)
+ rewrite diff.out (100%)
+[master ec7c3b4] 33 of 36
+ 5 files changed, 11 insertions(+), 5 deletions(-)
+[master 0c59298] 33 of 36
+ 5 files changed, 7 insertions(+), 3 deletions(-)
+[master 2cf0478] 36 of 36
+ 6 files changed, 9 insertions(+), 2 deletions(-)
+[master 108ec85] 36 of 36
+ 3 files changed, 5 insertions(+), 1 deletion(-)
+[master d2a9645] 36 of 36
+ 3 files changed, 5 insertions(+), 1 deletion(-)

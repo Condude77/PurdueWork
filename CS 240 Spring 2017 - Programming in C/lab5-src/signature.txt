@@ -1,0 +1,7 @@
+File Type	| Extension	| Signature				| Signature Offset
+Executable file | .exe		| 4D 5A					| 0
+WAV file	| .wav		| 52 49 46 46 nn nn nn nn 57 41 56 45	| 0
+JPEG		| .jpg		| FF D8 FF E0 nn nn 4A 46 49 46 00 01	| 0
+GIF		| .gif		| 47 49	46 38 37 61			| 0
+TAR		| .tar		| 1F 9D					| 0
+ZIP		| .zip		| 50 4B 03 04				| 0
